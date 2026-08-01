@@ -515,8 +515,11 @@ export function CTASection() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // 1. Add the dynamic URL definition here
+    const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
     try {
-      const response = await fetch("http://localhost:5000/api/forms/contact", {
+      const response = await fetch(`${API_URL}/api/forms/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

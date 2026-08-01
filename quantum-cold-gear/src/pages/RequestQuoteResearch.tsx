@@ -806,8 +806,11 @@ const RequestQuoteResearch = () => {
       submitData.append("attachments", file);
     });
 
+    // 1. Add the dynamic URL definition here
+    const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
     try {
-      const response = await fetch("http://localhost:5000/api/forms/research-quote", {
+      const response = await fetch(`${API_URL}/api/forms/research-quote`, {
         method: "POST",
         // Note: Do NOT set Content-Type header. Fetch sets it automatically with the multi-part boundary
         body: submitData
