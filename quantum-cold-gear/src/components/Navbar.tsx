@@ -39,6 +39,12 @@
 //       { name: "EMC2T-2 Electromagnet", path: "/products/emc2t-2-magnet" },
 //     ],
 //   },
+//     {
+//     title: "Quick Links",
+//     items: [
+//       { name: "Request a Quote", path: "/request-quote/research" },
+//     ],
+//   },
 // ];
 
 // const powerCategories = [
@@ -65,20 +71,25 @@
 //       { name: "Talk to our Engineers / R&D Team", path: "/contact" },
 //     ],
 //   },
+//     {
+//     title: "Quick Links",
+//     items: [
+//       { name: "Request a Quote", path: "/request-quote/industry" },
+//     ],
+//   },
 // ];
 
-// // NEW HORIZONTAL DATA FOR "ABOUT US"
+// // NEW VERTICAL DATA FOR "ABOUT US" – single list (like Knowledge Bank)
 // const aboutCategories = [
-//   { name: "Cryonano at a Glance", path: "/about/our-story" },
-//   { name: "Founders & Leadership", path: "/about/leadership" },
-//   { name: "Research & Technology", path: "/research/overview" },
-//   { name: "Innovation & Patents", path: "/research/innovation" },
-//   { name: "R&D & Manufacturing", path: "/research/rnd-manufacturing" },
-//   { name: "Quality & Compliance", path: "/about/quality" },
-//   { name: "News & Press", path: "/contact/media" }
+//   { name: "Who We Are", path:"/about" },
+//   { name: "Awards and Recognition", path: "/about/awards" },
+//   { name: "News & Events", path: "/about/news" },
+//   { name: "Careers", path: "/about/careers" },
+//   { name: "Product Videos", path: "/about/product-videos" },
+//   { name: "Intern with Us", path: "/about/intern" },
 // ];
 
-// // NEW DATA FOR KNOWLEDGE BANK
+// // KNOWLEDGE BANK DATA (unchanged)
 // const knowledgeCategories = [
 //   {
 //     title: "",
@@ -94,12 +105,18 @@
 //   { label: "Research", href: "/products", dropdown: "products" },
 //   { label: "Industry", dropdown: "solutions" },
 //   { label: "Knowledge Bank", dropdown: "knowledge" },
-//   { label: "About Us", href: "/about", dropdown: "about" }, 
+//   { label: "About Us", href: "/about", dropdown: "about" },
 //   { label: "Contact", href: "/contact" },
 // ];
 
+// // Helper: check if a path is in any category's items
 // const isPathInCategories = (categories: any[], currentPath: string) => {
-//   return categories.some(cat => cat.items.some((item: any) => item.path === currentPath));
+//   return categories.some(cat => cat.items && cat.items.some((item: any) => item.path === currentPath));
+// };
+
+// // Helper: check if path is an about sub‑page (starts with /about)
+// const isAboutPath = (path: string) => {
+//   return path === "/about" || path.startsWith("/about/");
 // };
 
 // export function Navbar() {
@@ -126,9 +143,6 @@
 //         </div>
 //       </div>
 
-//       {/* Main nav */}
-//       {/* <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md relative"> */}
-
 //       <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md">
 //         <div className="container flex items-center justify-between h-[var(--nav-height)] py-4">
           
@@ -152,21 +166,20 @@
 //           <div className="hidden lg:flex items-center gap-1 xl:gap-4">
 //             {navLinks.map((link) => {
               
-//               // FIXED ACTIVE STATE LOGIC
+//               // ACTIVE STATE LOGIC
 //               let isActive = false;
 //               if (location.pathname === link.href) {
-//                  isActive = true; 
+//                 isActive = true;
 //               } else if (link.dropdown && location.pathname !== "/contact") {
-//                  // The above condition prevents dropdowns from highlighting when on the Contact page
-//                  if (link.dropdown === "products") {
-//                     isActive = isPathInCategories(productCategories, location.pathname);
-//                  } else if (link.dropdown === "solutions") {
-//                     isActive = isPathInCategories(powerCategories, location.pathname);
-//                  } else if (link.dropdown === "knowledge") {
-//                     isActive = isPathInCategories(knowledgeCategories, location.pathname);
-//                  } else if (link.dropdown === "about") {
-//                     isActive = aboutCategories.some(cat => cat.path === location.pathname);
-//                  }
+//                 if (link.dropdown === "products") {
+//                   isActive = isPathInCategories(productCategories, location.pathname);
+//                 } else if (link.dropdown === "solutions") {
+//                   isActive = isPathInCategories(powerCategories, location.pathname);
+//                 } else if (link.dropdown === "knowledge") {
+//                   isActive = isPathInCategories(knowledgeCategories, location.pathname);
+//                 } else if (link.dropdown === "about") {
+//                   isActive = isAboutPath(location.pathname);
+//                 }
 //               }
 
 //               return (
@@ -194,34 +207,32 @@
 //                     </Link>
 //                   </motion.div>
 
-//                   {/* Mega dropdown for Products, Solutions & Knowledge */}
+//                   {/* Dropdown for all menus including "about" */}
 //                   <AnimatePresence>
-//                     {link.dropdown && link.dropdown !== "about" && openDropdown === link.dropdown && (
+//                     {link.dropdown && openDropdown === link.dropdown && (
 //                       <motion.div
 //                         initial={{ opacity: 0, y: 10 }}
 //                         animate={{ opacity: 1, y: 0 }}
 //                         exit={{ opacity: 0, y: 10 }}
 //                         transition={{ duration: 0.2 }}
-//                         // Dynamic width: wide for Products/Solutions, narrow (350px) for Knowledge
-//                         className={`absolute top-full left-0 mt-2 bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 z-[100] ${link.dropdown === "knowledge" ? "min-w-[200px]" : "min-w-[700px]"}`}
+//                         className={`absolute top-full left-0 mt-2 bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 z-[100] ${
+//                           link.dropdown === "knowledge" || link.dropdown === "about" 
+//                             ? "min-w-[220px]" 
+//                             : "min-w-[700px]"
+//                         }`}
 //                       >
-//                         {/* Dynamic columns: 4 for Products, 3 for Solutions, 1 for Knowledge */}
-//                         <div className={`grid gap-8 ${link.dropdown === "products" ? "grid-cols-4" : link.dropdown === "solutions" ? "grid-cols-3" : "grid-cols-1"}`}>
-                          
-//                           {/* Choose the correct array based on the hovered link */}
-//                           {/* {(link.dropdown === "products" ? productCategories : link.dropdown === "solutions" ? powerCategories : knowledgeCategories).map((cat) => (
-//                             <div key={cat.title}>
-//                               <h4 className="font-display font-bold text-sm text-primary uppercase tracking-wider mb-4 pb-2 border-b border-slate-200">
-//                                 {cat.title}
-//                               </h4>
-//                               <ul className="space-y-3"> */}
-
-
-
-
-//                               {(link.dropdown === "products" ? productCategories : link.dropdown === "solutions" ? powerCategories : knowledgeCategories).map((cat, idx) => (
+//                         <div className={`grid gap-8 ${
+//                           link.dropdown === "products" ? "grid-cols-4" :
+//                           link.dropdown === "solutions" ? "grid-cols-3" :
+//                           "grid-cols-1"
+//                         }`}>
+//                           {(link.dropdown === "products" ? productCategories :
+//                             link.dropdown === "solutions" ? powerCategories :
+//                             link.dropdown === "knowledge" ? knowledgeCategories :
+//                             // For "about" we treat it like a single list with no title
+//                             [{ title: "", items: aboutCategories }]
+//                           ).map((cat, idx) => (
 //                             <div key={cat.title || idx}>
-//                               {/* Conditionally render the heading ONLY if there is text in the title */}
 //                               {cat.title && (
 //                                 <h4 className="font-display font-bold text-sm text-primary uppercase tracking-wider mb-4 pb-2 border-b border-slate-200">
 //                                   {cat.title}
@@ -235,7 +246,11 @@
 //                                     whileTap={{ scale: 0.98 }}
 //                                     transition={{ duration: 0.2 }}
 //                                   >
-//                                     <Link to={item.path} onClick={() => setOpenDropdown(null)} className="text-sm font-medium text-slate-600 hover:text-primary transition-colors leading-snug block">
+//                                     <Link
+//                                       to={item.path}
+//                                       onClick={() => setOpenDropdown(null)}
+//                                       className="text-sm font-medium text-slate-600 hover:text-primary transition-colors leading-snug block"
+//                                     >
 //                                       {item.name}
 //                                     </Link>
 //                                   </motion.li>
@@ -293,43 +308,7 @@
 //           </div>
 //         </div>
 
-//         {/* NEW FULL-WIDTH HORIZONTAL BAR FOR "ABOUT US" */}
-//         <AnimatePresence>
-//           {openDropdown === "about" && (
-//             <motion.div
-//               initial={{ height: 0, opacity: 0 }}
-//               animate={{ height: "auto", opacity: 1 }}
-//               exit={{ height: 0, opacity: 0 }}
-//               transition={{ duration: 0.3, ease: "easeInOut" }}
-//               className="absolute top-full left-0 right-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden z-[100]"
-//               onMouseEnter={() => setOpenDropdown("about")}
-//               onMouseLeave={() => setOpenDropdown(null)}
-//             >
-//               <div className="container flex items-center justify-center gap-8 py-5 flex-wrap">
-//                 {aboutCategories.map((item) => (
-//                   <motion.div
-//                     key={item.name}
-//                     initial={{ opacity: 0, y: -5 }}
-//                     animate={{ opacity: 1, y: 0 }}
-//                     exit={{ opacity: 0, y: -5 }}
-//                     transition={{ duration: 0.2 }}
-//                   >
-//                     <Link
-//                       to={item.path}
-//                       onClick={() => setOpenDropdown(null)}
-//                       className="text-sm font-extrabold text-slate-600 hover:text-primary transition-colors tracking-wide relative after:absolute after:-bottom-1.5 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300"
-//                     >
-//                       {item.name}
-//                     </Link>
-//                   </motion.div>
-//                 ))}
-//               </div>
-//               <div className="w-full h-1 bg-gradient-to-r from-primary via-cyan-400 to-blue-500 opacity-80" />
-//             </motion.div>
-//           )}
-//         </AnimatePresence>
-
-//         {/* Mobile menu */}
+//         {/* Mobile menu (unchanged – but we update active state for about) */}
 //         <AnimatePresence>
 //           {mobileOpen && (
 //             <motion.div
@@ -342,17 +321,17 @@
 //                 {navLinks.map((link) => {
 //                   let isActive = false;
 //                   if (location.pathname === link.href) {
-//                      isActive = true;
+//                     isActive = true;
 //                   } else if (link.dropdown && location.pathname !== "/contact") {
-//                      if (link.dropdown === "products") {
-//                         isActive = isPathInCategories(productCategories, location.pathname);
-//                      } else if (link.dropdown === "solutions") {
-//                         isActive = isPathInCategories(powerCategories, location.pathname);
-//                      } else if (link.dropdown === "knowledge") {
-//                         isActive = isPathInCategories(knowledgeCategories, location.pathname);
-//                      } else if (link.dropdown === "about") {
-//                         isActive = aboutCategories.some(cat => cat.path === location.pathname);
-//                      }
+//                     if (link.dropdown === "products") {
+//                       isActive = isPathInCategories(productCategories, location.pathname);
+//                     } else if (link.dropdown === "solutions") {
+//                       isActive = isPathInCategories(powerCategories, location.pathname);
+//                     } else if (link.dropdown === "knowledge") {
+//                       isActive = isPathInCategories(knowledgeCategories, location.pathname);
+//                     } else if (link.dropdown === "about") {
+//                       isActive = isAboutPath(location.pathname);
+//                     }
 //                   }
                   
 //                   return (
@@ -366,6 +345,7 @@
 //                     </Link>
 //                   );
 //                 })}
+//                 {/* Mobile sub-items for About Us – show them as nested? But we'll just keep it simple; mobile users can click About Us to go to main page */}
 //               </div>
 //             </motion.div>
 //           )}
@@ -462,9 +442,8 @@ const powerCategories = [
   },
 ];
 
-// NEW VERTICAL DATA FOR "ABOUT US" – single list (like Knowledge Bank)
 const aboutCategories = [
-  { name: "About Us", path: "/about" },
+  { name: "Who We Are", path:"/about" },
   { name: "Awards and Recognition", path: "/about/awards" },
   { name: "News & Events", path: "/about/news" },
   { name: "Careers", path: "/about/careers" },
@@ -472,7 +451,6 @@ const aboutCategories = [
   { name: "Intern with Us", path: "/about/intern" },
 ];
 
-// KNOWLEDGE BANK DATA (unchanged)
 const knowledgeCategories = [
   {
     title: "",
@@ -492,12 +470,10 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-// Helper: check if a path is in any category's items
 const isPathInCategories = (categories: any[], currentPath: string) => {
   return categories.some(cat => cat.items && cat.items.some((item: any) => item.path === currentPath));
 };
 
-// Helper: check if path is an about sub‑page (starts with /about)
 const isAboutPath = (path: string) => {
   return path === "/about" || path.startsWith("/about/");
 };
@@ -505,6 +481,7 @@ const isAboutPath = (path: string) => {
 export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   
   const location = useLocation();
@@ -546,10 +523,9 @@ export function Navbar() {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-4">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-4 h-full">
             {navLinks.map((link) => {
               
-              // ACTIVE STATE LOGIC
               let isActive = false;
               if (location.pathname === link.href) {
                 isActive = true;
@@ -568,7 +544,7 @@ export function Navbar() {
               return (
                 <div
                   key={link.label}
-                  className="relative group py-2"
+                  className="relative group h-full flex items-center py-2"
                   onMouseEnter={() => link.dropdown && setOpenDropdown(link.dropdown)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
@@ -590,7 +566,7 @@ export function Navbar() {
                     </Link>
                   </motion.div>
 
-                  {/* Dropdown for all menus including "about" */}
+                  {/* Desktop Dropdown (pt-4 creates an invisible hover bridge so it doesn't close) */}
                   <AnimatePresence>
                     {link.dropdown && openDropdown === link.dropdown && (
                       <motion.div
@@ -598,49 +574,50 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className={`absolute top-full left-0 mt-2 bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 z-[100] ${
+                        className="absolute top-[100%] left-0 pt-4 z-[100]"
+                      >
+                        <div className={`bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 ${
                           link.dropdown === "knowledge" || link.dropdown === "about" 
                             ? "min-w-[220px]" 
                             : "min-w-[700px]"
-                        }`}
-                      >
-                        <div className={`grid gap-8 ${
-                          link.dropdown === "products" ? "grid-cols-4" :
-                          link.dropdown === "solutions" ? "grid-cols-3" :
-                          "grid-cols-1"
                         }`}>
-                          {(link.dropdown === "products" ? productCategories :
-                            link.dropdown === "solutions" ? powerCategories :
-                            link.dropdown === "knowledge" ? knowledgeCategories :
-                            // For "about" we treat it like a single list with no title
-                            [{ title: "", items: aboutCategories }]
-                          ).map((cat, idx) => (
-                            <div key={cat.title || idx}>
-                              {cat.title && (
-                                <h4 className="font-display font-bold text-sm text-primary uppercase tracking-wider mb-4 pb-2 border-b border-slate-200">
-                                  {cat.title}
-                                </h4>
-                              )}
-                              <ul className="space-y-3">
-                                {cat.items.map((item: any) => (
-                                  <motion.li 
-                                    key={item.name}
-                                    whileHover={{ x: 4 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    transition={{ duration: 0.2 }}
-                                  >
-                                    <Link
-                                      to={item.path}
-                                      onClick={() => setOpenDropdown(null)}
-                                      className="text-sm font-medium text-slate-600 hover:text-primary transition-colors leading-snug block"
+                          <div className={`grid gap-8 ${
+                            link.dropdown === "products" ? "grid-cols-4" :
+                            link.dropdown === "solutions" ? "grid-cols-3" :
+                            "grid-cols-1"
+                          }`}>
+                            {(link.dropdown === "products" ? productCategories :
+                              link.dropdown === "solutions" ? powerCategories :
+                              link.dropdown === "knowledge" ? knowledgeCategories :
+                              [{ title: "", items: aboutCategories }]
+                            ).map((cat, idx) => (
+                              <div key={cat.title || idx}>
+                                {cat.title && (
+                                  <h4 className="font-display font-bold text-sm text-primary uppercase tracking-wider mb-4 pb-2 border-b border-slate-200">
+                                    {cat.title}
+                                  </h4>
+                                )}
+                                <ul className="space-y-3">
+                                  {cat.items.map((item: any) => (
+                                    <motion.li 
+                                      key={item.name}
+                                      whileHover={{ x: 4 }}
+                                      whileTap={{ scale: 0.98 }}
+                                      transition={{ duration: 0.2 }}
                                     >
-                                      {item.name}
-                                    </Link>
-                                  </motion.li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
+                                      <Link
+                                        to={item.path}
+                                        onClick={() => setOpenDropdown(null)}
+                                        className="text-sm font-medium text-slate-600 hover:text-primary transition-colors leading-snug block"
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </motion.li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </motion.div>
                     )}
@@ -691,7 +668,7 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu (unchanged – but we update active state for about) */}
+        {/* Mobile menu with expanding Accordions */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -700,7 +677,7 @@ export function Navbar() {
               exit={{ height: 0, opacity: 0 }}
               className="lg:hidden overflow-hidden border-t border-slate-300 bg-slate-100 shadow-inner absolute top-full left-0 w-full z-[100]"
             >
-              <div className="container py-4 space-y-2">
+              <div className="container py-4 space-y-2 max-h-[75vh] overflow-y-auto">
                 {navLinks.map((link) => {
                   let isActive = false;
                   if (location.pathname === link.href) {
@@ -716,19 +693,73 @@ export function Navbar() {
                       isActive = isAboutPath(location.pathname);
                     }
                   }
-                  
+
+                  const isExpanded = mobileExpanded === link.dropdown;
+                  const dropdownData = link.dropdown === "products" ? productCategories :
+                                       link.dropdown === "solutions" ? powerCategories :
+                                       link.dropdown === "knowledge" ? knowledgeCategories :
+                                       link.dropdown === "about" ? [{ title: "", items: aboutCategories }] : null;
+
                   return (
-                    <Link
-                      key={link.label}
-                      to={link.href || "#"}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block py-3 px-4 rounded-md text-base font-bold transition-colors ${isActive ? "bg-white text-primary border-l-4 border-primary shadow-sm" : "text-slate-600 hover:text-slate-900 hover:bg-white border-l-4 border-transparent"}`}
-                    >
-                      {link.label}
-                    </Link>
+                    <div key={link.label} className="block">
+                      <div className={`flex items-center justify-between rounded-md transition-colors ${isActive ? "bg-white text-primary border-l-4 border-primary shadow-sm" : "text-slate-600 hover:text-slate-900 hover:bg-white border-l-4 border-transparent"}`}>
+                        <Link
+                          to={link.href || "#"}
+                          onClick={() => {
+                            if (!link.dropdown) setMobileOpen(false);
+                          }}
+                          className="flex-grow py-3 px-4 text-base font-bold"
+                        >
+                          {link.label}
+                        </Link>
+                        {link.dropdown && (
+                          <button 
+                            onClick={() => setMobileExpanded(isExpanded ? null : link.dropdown)}
+                            className="p-3 mr-1 text-slate-500 hover:text-primary transition-colors flex items-center justify-center"
+                          >
+                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? "rotate-180 text-primary" : ""}`} />
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Mobile Accordion Sub-links */}
+                      <AnimatePresence>
+                        {link.dropdown && isExpanded && dropdownData && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-6 pr-4 py-3 space-y-5 bg-slate-200/50 rounded-b-md border-l-4 border-transparent">
+                              {dropdownData.map((cat, idx) => (
+                                <div key={cat.title || idx} className="space-y-2">
+                                  {cat.title && (
+                                    <p className="text-[11px] font-black text-primary uppercase tracking-widest border-b border-slate-300 pb-1 mb-2">
+                                      {cat.title}
+                                    </p>
+                                  )}
+                                  <div className="flex flex-col space-y-3">
+                                    {cat.items.map((item: any) => (
+                                      <Link
+                                        key={item.name}
+                                        to={item.path}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="text-sm font-medium text-slate-700 hover:text-primary transition-colors block"
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   );
                 })}
-                {/* Mobile sub-items for About Us – show them as nested? But we'll just keep it simple; mobile users can click About Us to go to main page */}
               </div>
             </motion.div>
           )}

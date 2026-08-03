@@ -1,50 +1,478 @@
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
+import { motion } from "framer-motion";
+import {
+  Box,
+  Network,
+  Settings,
+  Lightbulb,
+  Users,
+  Target,
+  UserCheck,
+  TrendingUp,
+  Search,
+  CheckCircle2,
+  Rocket,
+  Atom,
+  ThermometerSnowflake,
+  Magnet,
+  Cpu,
+  Zap,
+  Quote,
+  Mail,
+  ExternalLink,
+  Sparkles,
+  Globe,
+  BookOpen,
+  Award,
+  ArrowRight,
+} from "lucide-react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, GraduationCap } from "lucide-react";
 
-const Intern = () => {
+// ==========================================
+// ANIMATION VARIANTS
+// ==========================================
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
+// ==========================================
+// DATA BLOCKS
+// ==========================================
+const whyInternFeatures = [
+  {
+    icon: Box,
+    title: "Work on Products That Matter",
+    desc: "Contribute to real engineering products used by research institutions, national labs, industries and startups.",
+  },
+  {
+    icon: Network,
+    title: "Learn Across Disciplines",
+    desc: "Gain exposure across mechanical, electronics, software, cryogenics, magnetics, power electronics and more.",
+  },
+  {
+    icon: Settings,
+    title: "Build Real Hardware",
+    desc: "Work on real systems. Assemble, test, troubleshoot and improve prototypes that are deployed in the field.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Solve Problems That Don't Have Answers Yet",
+    desc: "Many challenges have no textbook solutions. You'll learn to think from first principles and innovate.",
+  },
+  {
+    icon: Users,
+    title: "Work With Scientists & Engineers",
+    desc: "Interact with researchers, professors, national laboratories and industry experts solving real-world problems.",
+  },
+  {
+    icon: Target,
+    title: "Learn Product Thinking",
+    desc: "Understand the complete product journey—from concept and design to prototyping, testing, manufacturing and customer support.",
+  },
+  {
+    icon: UserCheck,
+    title: "Ownership From Day One",
+    desc: "We believe in trust and responsibility. Your ideas can become part of products deployed worldwide.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Grow With CRYONANO",
+    desc: "Outstanding interns may be considered for Pre-Placement Offers (PPO) based on their performance.",
+  },
+];
+
+const checklistItems = [
+  "You enjoy asking \"Why?\" and exploring deeper.",
+  "You love building things and solving difficult problems.",
+  "You are not afraid of learning unfamiliar topics.",
+  "You take ownership and pay attention to detail.",
+  "You enjoy collaborating with people from different backgrounds.",
+  "You care about quality and impact.",
+];
+
+const skillsDeveloped = [
+  "Hands-on experience with real prototypes",
+  "Cross-functional team collaboration",
+  "System-level thinking and design",
+  "Exposure to advanced manufacturing processes",
+  "Problem-solving under real constraints",
+];
+
+const intersectionDomains = [
+  { icon: Atom, label: "Quantum & Advanced Technologies" },
+  { icon: ThermometerSnowflake, label: "Cryogenics & Low Temperature Systems" },
+  { icon: Magnet, label: "Electromagnetics & Precision Systems" },
+  { icon: Cpu, label: "Instrumentation & Control Electronics" },
+  { icon: Zap, label: "Power Electronics & Embedded Systems" },
+];
+
+// ==========================================
+// MAIN PAGE COMPONENT
+// ==========================================
+export default function Intern() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <PageTransition>
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-white font-sans flex flex-col selection:bg-primary/20 selection:text-primary overflow-x-hidden">
         <Navbar />
-        <main className="container py-12">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-primary transition-colors mb-6">
-            <ArrowLeft className="h-4 w-4" /> Back to Home
-          </Link>
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <GraduationCap className="w-10 h-10 text-primary" />
-              <h1 className="font-display text-4xl font-extrabold text-slate-900">Intern with Us</h1>
-            </div>
-            <p className="text-lg text-slate-600 mb-8">
-              Gain hands-on experience in quantum technology, cryogenics, and power electronics.
-            </p>
-            <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-              <h2 className="font-display text-2xl font-bold text-slate-900 mb-4">Why Intern at Cryonano?</h2>
-              <ul className="space-y-3 text-slate-600">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-bold">•</span> Work on real-world projects with industry experts.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-bold">•</span> Access to state-of-the-art labs and equipment.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-bold">•</span> Mentorship from leading scientists and engineers.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-bold">•</span> Opportunity to contribute to publications and patents.
-                </li>
-              </ul>
-              <p className="mt-6 text-slate-500">Applications are open year-round. Send your CV to <a href="mailto:intern@cryonano.com" className="text-primary hover:underline">intern@cryonano.com</a></p>
+
+        {/* ========================================== */}
+        {/* 1. HERO – Fully blended image */}
+        {/* ========================================== */}
+        <section className="relative pt-8 pb-0 bg-white overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-100/20 rounded-full blur-3xl" />
+          </div>
+
+          <div className="container relative z-10">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Left Content */}
+              <motion.div
+                initial="hidden"
+                animate="show"
+                variants={staggerContainer}
+                className="py-8 md:py-10 lg:py-12 pr-4 lg:pr-8"
+              >
+                <motion.div
+                  variants={fadeInUp}
+                  className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-extrabold tracking-widest uppercase mb-3 shadow-sm"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  Join Our Team
+                </motion.div>
+
+                <motion.h1
+                  variants={fadeInUp}
+                  className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-3"
+                >
+                  Intern at <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-600">
+                    CRYONANO
+                  </span>
+                </motion.h1>
+
+                <motion.h3
+                  variants={fadeInUp}
+                  className="text-xl md:text-2xl font-extrabold text-slate-800 mb-4"
+                >
+                  Think Science. <span className="text-primary">Build What Doesn't Exist.</span>
+                </motion.h3>
+
+                <motion.p
+                  variants={fadeInUp}
+                  className="text-base md:text-lg text-slate-600 font-medium leading-relaxed max-w-lg mb-6"
+                >
+                  Work on real engineering challenges and build technologies that empower
+                  researchers, industries and innovators to solve some of the world's most
+                  challenging problems.
+                </motion.p>
+
+                {/* NEW: Two buttons */}
+                <motion.div
+                  variants={fadeInUp}
+                  className="flex flex-wrap gap-4"
+                >
+                  <Link
+                    to="/products"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-red-700 text-white font-extrabold text-sm transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5"
+                  >
+                    Explore Products
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-primary/50 hover:text-primary text-slate-700 font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-sm hover:shadow-md"
+                  >
+                    Contact Team
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              {/* Right Image – Fully blended, no frame, no spot */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative h-[280px] md:h-[320px] lg:h-[400px] w-full overflow-hidden"
+              >
+                {/* Ultra-subtle edge fade – no spot, seamless blend */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent z-10 w-12 lg:w-16" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent z-10 h-8" />
+                <img
+                  src="/images/intern/image2.jpg"
+                  alt="Engineering Intern working on hardware"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
           </div>
-        </main>
+        </section>
+
+        {/* ========================================== */}
+        {/* 2. WHY INTERN GRID – Larger fonts, proper content */}
+        {/* ========================================== */}
+        <section className="py-10 md:py-12 bg-white border-t border-slate-100">
+          <div className="container max-w-7xl">
+            <div className="text-center mb-8">
+              <span className="text-primary font-extrabold tracking-widest uppercase text-[10px] block mb-1">
+                Why Intern
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl font-extrabold text-slate-900">
+                Why Intern at <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-600">CRYONANO</span>
+              </h2>
+            </div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-30px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            >
+              {whyInternFeatures.map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    variants={fadeInUp}
+                    className="group bg-white border border-slate-200 rounded-xl p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <Icon className="w-5 h-5 text-primary group-hover:text-white transition-all duration-300" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-slate-900 text-base mb-1 leading-tight">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                          {feature.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ========================================== */}
+        {/* 3. TWO-COLUMN SPLIT */}
+        {/* ========================================== */}
+        <section className="py-10 md:py-12 bg-slate-50 border-y border-slate-100">
+          <div className="container max-w-7xl">
+            <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+              {/* LEFT: Who We're Looking For – Dark Panel */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-slate-900 rounded-2xl p-8 md:p-10 shadow-xl flex flex-col h-full relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+
+                <div className="flex items-center gap-4 mb-5 relative z-10">
+                  <Search className="w-8 h-8 text-primary shrink-0" />
+                  <h3 className="font-display text-2xl font-extrabold text-white uppercase tracking-wide">
+                    Who We're Looking For
+                  </h3>
+                </div>
+
+                <p className="text-base text-slate-300 font-medium mb-5 leading-relaxed relative z-10">
+                  We're not looking for perfect résumés— <br />
+                  <span className="text-white font-bold">we're looking for curious minds.</span>
+                </p>
+
+                <ul className="space-y-3 mb-5 relative z-10 flex-grow">
+                  {checklistItems.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="text-sm font-medium text-slate-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="bg-white/5 border border-white/10 rounded-xl p-5 flex gap-4 items-start relative z-10 mt-auto">
+                  <Rocket className="w-6 h-6 text-primary shrink-0" />
+                  <p className="text-sm font-medium text-slate-300 leading-relaxed">
+                    If you're excited by challenging engineering problems and want to build
+                    products that advance science and industry, we'd love to hear from you.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* RIGHT: Work at Intersection – Light Panel */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-slate-200 flex flex-col h-full"
+              >
+                <h3 className="font-display text-2xl font-extrabold text-slate-900 uppercase tracking-wide mb-5">
+                  Work at the Intersection of Science and Engineering
+                </h3>
+
+                <div className="flex gap-4 items-start mb-6">
+                  <Atom className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
+                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
+                    Our work bridges scientific research and industrial innovation. As an intern,
+                    you'll gain exposure to multidisciplinary engineering projects involving
+                    advanced instrumentation, cryogenic systems, precision mechanics, control
+                    electronics and intelligent engineering systems.
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3 mb-6">
+                  <Award className="w-6 h-6 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm mb-1">What you'll build:</h4>
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-slate-600 font-medium">
+                      {skillsDeveloped.map((skill, idx) => (
+                        <li key={idx} className="flex items-center gap-1.5">
+                          <span className="w-1 h-1 rounded-full bg-primary" />
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-auto">
+                  {intersectionDomains.map((domain, idx) => {
+                    const Icon = domain.icon;
+                    return (
+                      <div
+                        key={idx}
+                        className="flex flex-col items-center text-center group"
+                      >
+                        <div className="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-2 group-hover:border-primary group-hover:bg-primary/10 transition-all">
+                          <Icon
+                            className="w-6 h-6 text-slate-700 group-hover:text-primary transition-colors"
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider leading-snug">
+                          {domain.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================== */}
+        {/* 4. QUOTE BANNER – with image blend */}
+        {/* ========================================== */}
+        <section className="py-10 md:py-12 bg-white">
+          <div className="container max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative w-full rounded-2xl overflow-hidden shadow-xl bg-slate-900 flex flex-col lg:flex-row"
+            >
+              <div className="lg:w-1/2 p-8 md:p-12 relative z-20 flex flex-col justify-center">
+                <Quote className="w-12 h-12 text-primary mb-4 opacity-80" />
+                <h2 className="font-display text-2xl md:text-3xl font-extrabold text-white leading-tight mb-4">
+                  We don't hire interns to fill temporary roles. <br />
+                  <span className="text-primary">We invest in future engineers.</span>
+                </h2>
+                <p className="text-sm text-slate-300 font-medium leading-relaxed mb-4">
+                  If you're passionate about science, engineering, and building technologies
+                  that make a difference, CRYONANO is the place to learn, grow, and create impact.
+                </p>
+                <p className="text-base font-bold text-white uppercase tracking-widest border-l-4 border-primary pl-4">
+                  Think Science. Build What Doesn't Exist.
+                </p>
+              </div>
+
+              <div className="lg:w-1/2 relative min-h-[200px] lg:min-h-full overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900 via-slate-900/70 to-transparent z-10" />
+                {/* <img
+                  src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop"
+                  alt="Intern testing electronics"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                /> */}
+
+                 <img
+                  src="/images/intern/image4.jpg"
+                  alt="Intern testing electronics"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ========================================== */}
+        {/* 5. FINAL CTA – Larger heading */}
+        {/* ========================================== */}
+        <section className="bg-slate-900 py-8 border-t border-slate-800">
+          <div className="container max-w-7xl">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              {/* Left: Mail */}
+              <div className="flex items-center gap-5 w-full lg:w-1/2">
+                <div className="w-12 h-12 rounded-full border border-slate-700 bg-white/5 flex items-center justify-center shrink-0">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">
+                    Ready to build the future with us?
+                  </p>
+                  <p className="text-slate-400 text-xs mb-0.5">Send your CV to</p>
+                  <a
+                    href="mailto:careers@cryonano.com"
+                    className="text-2xl md:text-3xl font-extrabold text-white hover:text-primary transition-colors"
+                  >
+                    contact@cryonano.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="hidden lg:block w-px h-16 bg-slate-700" />
+
+              {/* Right: Website */}
+              <div className="flex flex-col items-center lg:items-start gap-3 w-full lg:w-auto">
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-slate-400" />
+                  <p className="text-xs font-medium text-slate-400">Or apply through our website</p>
+                </div>
+                <a
+                  href="https://www.cryonano.com/careers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2.5 rounded-full border border-slate-600 text-white font-bold text-sm hover:bg-white hover:text-slate-900 transition-all flex items-center gap-2"
+                >
+                  www.cryonano.com/careers
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <Footer />
       </div>
     </PageTransition>
   );
-};
-
-export default Intern;
+}
