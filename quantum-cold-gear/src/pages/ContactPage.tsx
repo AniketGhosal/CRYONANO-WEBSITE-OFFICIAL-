@@ -679,7 +679,7 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: "Location",
-      details: "Bengaluru, India",
+      details: "Kolkata & Bangalore, India",
       description: "Global Operations Hub",
       link: "#",
       color: "text-emerald-600",

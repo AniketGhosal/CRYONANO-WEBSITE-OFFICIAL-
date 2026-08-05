@@ -591,7 +591,7 @@ import {
   Sparkles,
   Mail,
   Award,
-  TrendingUp,
+  TrendingUp, 
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -639,6 +639,7 @@ Dr. Talukdar contributed insights from his extensive experience in experimental 
 His participation highlights both the growing impact of Cryonano Labs and India's expanding role in quantum and nanoscale research ecosystems.`,
     image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+    // image: "/images/awards/RPGR_2023.jpg",
   },
   {
     year: "2023",
@@ -820,7 +821,8 @@ export default function Awards() {
               <div className="md:w-5/12 bg-slate-100 relative min-h-[280px] overflow-hidden p-4 flex items-center justify-center">
                 <div className="absolute inset-0 bg-primary/5 mix-blend-multiply" />
                 <img
-                  src="https://images.unsplash.com/photo-1543269664-7eef42226a21?q=80&w=800&auto=format&fit=crop"
+                  // src="https://images.unsplash.com/photo-1543269664-7eef42226a21?q=80&w=800&auto=format&fit=crop"
+                  src="/images/awards/image1.jpg"
                   alt="Dr. Deep Talukdar IPA Bulletin"
                   className="w-full h-full object-cover rounded-xl shadow-md group-hover:scale-105 transition-transform duration-700"
                 />

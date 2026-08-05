@@ -507,7 +507,8 @@ const newsData = [
       "Shift from reactive to predictive maintenance",
       "Implemented in collaboration with Howrah Division",
     ],
-    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1000&auto=format&fit=crop",
+    // image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1000&auto=format&fit=crop",
+    image: "/images/news/Vande_Bharat.cms",
     linkText: "Read Media Coverage",
     linkUrl: "http://timesofindia.indiatimes.com/articleshow/114425799.cms",
     fullContent: [
@@ -535,7 +536,8 @@ const newsData = [
       "Low-dimensional materials for energy and optoelectronic applications",
       "Computational studies: Density functional theory, simulations for Advanced Materials",
     ],
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1000&auto=format&fit=crop",
+    // image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1000&auto=format&fit=crop",
+    image: "/images/news/Almond_2023.avif",
     linkText: "View Gallery",
     linkUrl: "#gallery",
     fullContent: [
@@ -577,7 +579,7 @@ const newsData = [
       "Expansion in cryogenic and material science technologies",
       "Enhanced supply chains and global market reach",
     ],
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?q=80&w=1000&auto=format&fit=crop",
+    image: "/images/news/image1.jpg",
     linkText: "Read More",
     linkUrl: "#",
     fullContent: [
@@ -608,7 +610,7 @@ const newsData = [
       "Vision for a robust domestic cryogenic ecosystem",
       "Empowering research labs, institutions & quantum startups",
     ],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop",
+    image: "/images/news/IISC.jpeg",
     linkText: "Event Details",
     linkUrl: "#",
     fullContent: [
