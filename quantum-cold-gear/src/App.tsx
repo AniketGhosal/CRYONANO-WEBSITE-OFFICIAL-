@@ -159,6 +159,7 @@ import DcDcSystemPageLow from "./pages/DcDcSystemPageLow";
 import DcDcSystemPageHigh from "./pages/DcDcSystemPageHigh";
 import DcAcInvertersPage from "./pages/DcAcInvertersPage";
 import Inverter400HzPage from "./pages/Inverter400HzPage";
+import IntelligentBatteryChargersPage from './pages/IntelligentBatteryChargersPage';
 import ContactPage from "./pages/ContactPage";
 import ServiceSupportPage from "./pages/ServiceSupportPage";
 import ResearchPublicationsPage from "./pages/ResearchPublicationsPage";
@@ -211,6 +212,7 @@ const AnimatedRoutes = () => {
         <Route path="/products/dc-dc-system-high" element={<DcDcSystemPageHigh />} />
         <Route path="/products/dc-ac-inverters" element={<DcAcInvertersPage />} />
         <Route path="/products/inverter-400hz-rugged" element={<Inverter400HzPage />} />
+        <Route path="/products/battery-chargers" element={<IntelligentBatteryChargersPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/support" element={<ServiceSupportPage />} />
         <Route path="/about/research-publications" element={<ResearchPublicationsPage />} />

@@ -810,21 +810,21 @@ const productCatalog = [
     ],
     image: "/images/Cryogenics/nano-stage/image2.png",
   },
-  {
-    id: "2d-transfer-system",
-    category: "Cryogenics",
-    icon: Layers,
-    title: "2D Transfer System",
-    subtitle: "Deterministic Heterostructure Stacking",
-    description:
-      "A precision-engineered motorized transfer system designed for the deterministic placement of 2D materials like Graphene and hBN.",
-    features: [
-      "Sub-Micron XYZ & Theta",
-      "Programmable Thermal Chuck",
-      "Long-WD Optical Microscope",
-    ],
-    image: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
-  },
+  // {
+  //   id: "2d-transfer-system",
+  //   category: "Cryogenics",
+  //   icon: Layers,
+  //   title: "2D Transfer System",
+  //   subtitle: "Deterministic Heterostructure Stacking",
+  //   description:
+  //     "A precision-engineered motorized transfer system designed for the deterministic placement of 2D materials like Graphene and hBN.",
+  //   features: [
+  //     "Sub-Micron XYZ & Theta",
+  //     "Programmable Thermal Chuck",
+  //     "Long-WD Optical Microscope",
+  //   ],
+  //   image: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
+  // },
   {
     id: "psm-100",
     category: "Cryogenics",
@@ -882,10 +882,25 @@ const productCatalog = [
     image: "/images/Microscopes/ultraclear-4k/image1.png",
   },
   {
+    id: "2d-transfer-system",
+    category: "Microscopes",
+    icon: Layers,
+    title: "Manual 2D Transfer System",
+    subtitle: "Deterministic Heterostructure Stacking",
+    description:
+      "A precision-engineered motorized transfer system designed for the deterministic placement of 2D materials like Graphene and hBN.",
+    features: [
+      "Sub-Micron XYZ & Theta",
+      "Programmable Thermal Chuck",
+      "Long-WD Optical Microscope",
+    ],
+    image: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
+  },
+  {
     id: "2d-transfer-motorised",
     category: "Microscopes",
     icon: Layers,
-    title: "2D Material Transfer System",
+    title: "Motorised 2D transfer system",
     subtitle: "Motorised Controller with Sub-micron Resolution",
     description:
       "Fully motorised XY, Z, R, T stages with integrated high-resolution imaging for precise deterministic placement of graphene, TMDCs, and van der Waals heterostructures.",
@@ -1014,6 +1029,17 @@ const servicesCatalog = [
       "Deliver crystal-controlled AC power with exceptional frequency accuracy and waveform purity for aerospace, defense, and testing applications.",
     features: ["400Hz Pure Sine Wave", "MIL-STD Validated", "Low EMI Design"],
     image: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER1.avif",
+  },
+  {
+    id: "battery-chargers",
+    category: "Battery Chargers",
+    icon: Zap,
+    title: "Intelligent Battery Chargers",
+    subtitle: "Reliable & Rugged Power",
+    description:
+      "Deliver safe, stable, and efficient power for embedded systems, off-grid installations, and mission-critical defense applications.",
+    features: ["Multi-Chemistry Support", "Advanced Protection Systems", "MIL-STD Compliant"],
+    image: "/images/Power Converters & Inverters/battery chargers/image2.avif",
   },
 ];
 

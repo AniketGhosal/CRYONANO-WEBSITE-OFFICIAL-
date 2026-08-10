@@ -1833,12 +1833,12 @@ export const productsData: Record<string, any> = {
   // src/data/products.ts record for "dipstick" (VTI)
 "dipstick": {
   category: "Cryogenics",
-  name: "Variable Temperature Insert (VTI) / Cryogenic Dip Stick",
+  name: "Cryogenic Variable Temperature Insert (VTI)",
   subtitle: "Precision Cryogenic Sample Platform for Liquid Nitrogen & Liquid Helium Systems",
   statusBadge: "VTI PLATFORM",
   
   hero: {
-    title: "Variable Temperature Insert (VTI) / Cryogenic Dip Stick",
+    title: "Cryogenic Variable Temperature Insert (VTI)",
     subtitle: "Precision cryogenic insert platform for Liquid Nitrogen and Liquid Helium research systems with integrated thermal control, vacuum compatibility, and high-integrity electrical interfaces.",
     description: "Cryo Nano Labs designs and manufactures advanced Variable Temperature Inserts (VTI) engineered for precision low-temperature experimentation in both Liquid Nitrogen (LN₂) and Liquid Helium (LHe) environments. Developed for demanding scientific and industrial research applications, the VTI platform enables highly stable temperature-controlled operation from cryogenic temperatures up to above ambient conditions while maintaining exceptional thermal performance, vacuum compatibility, and electrical integrity. Designed for seamless integration into cryostats, superconducting magnet systems, vacuum chambers, and custom experimental setups, the VTI architecture supports long-duration operation, repeated thermal cycling, and electrically sensitive measurements under high-vacuum conditions."
   },
@@ -5380,5 +5380,142 @@ export const productsData: Record<string, any> = {
     cta: {
       tagline: "Powering innovation. Performing under pressure. Engineered for everywhere."
     }
-  }
+  },
+
+  "battery-chargers": {
+    category: "Battery Chargers",
+    name: "Intelligent Battery Chargers",
+    subtitle: "Reliable & Rugged Power | Trusted Power. Anywhere. No Compromises.",
+    statusBadge: "MISSION CRITICAL POWER",
+    
+    hero: {
+      title: "Intelligent Battery Chargers",
+      subtitle: "Reliable & Rugged Power | Trusted Power. Anywhere. No Compromises.",
+      description: "At CRYONANO Labs, we design power solutions that don’t flinch under pressure. Our battery chargers deliver safe, stable, and efficient power for embedded systems, off-grid installations, and mission-critical applications where uptime, accuracy, and durability are non-negotiable. From research labs to defense platforms, our chargers are engineered to perform anytime, anywhere."
+    },
+
+    quickSpecs: [
+      { label: "Deployment", value: "Flexible" },
+      { label: "Chemistries", value: "Multi-Type" },
+      { label: "Temp Range", value: "–55°C to +105°C" },
+      { label: "Compliance", value: "MIL-STD" }
+    ],
+
+    overview: {
+      title: "Integrated Power System Stack",
+      paragraphs: [
+        "Our battery chargers provide safe, stable, and efficient power for embedded systems, off-grid installations, and mission-critical equipment, ensuring dependable performance wherever power availability is limited or unpredictable. Designed for continuous operation, they support demanding applications that require precise charging control and long-term reliability.",
+        "Engineered to meet the extreme requirements of defense and aerospace environments, our chargers deliver exceptional durability and performance in harsh operating conditions. These mission-critical solutions ensure uninterrupted power for sensitive avionics, communication systems, ground support equipment, and unmanned aerial vehicles (UAVs), where failure is not an option."
+      ],
+      advantages: [
+        "Lead-acid, Li-ion, NiMH, NiCd support",
+        "Adaptive multi-chemistry algorithms",
+        "Advanced overcharge protection",
+        "Short circuit & reverse polarity safe",
+        "Thermal overload protection"
+      ]
+    },
+
+    keyFeatures: [
+      { icon: "Activity", title: "Clean, Stable DC Output", desc: "With precision regulation and low-noise performance, the system ensures that every charge cycle is of the highest quality, even in sensitive environments." },
+      { icon: "Target", title: "High-Precision Charging", desc: "Advanced lifecycle management ensures optimal charging rates and maximum battery longevity for critical defense and experimental setups." },
+      { icon: "Settings", title: "Easy Integration", desc: "Simple integration with existing setups via standard communication interfaces. Integrates smoothly into both automated power systems and manual arrays." },
+      { icon: "Shield", title: "Reliable Long-Term Operation", desc: "Designed for use in extensive field and research experiments, providing reliable, continuous power delivery with extreme temperature stability and low drift." },
+      { icon: "Layers", title: "Flexible and Adaptable", desc: "As a modular system, it can easily scale to accommodate new battery banks and power requirements, making it adaptable to evolving operational needs." },
+      { icon: "ThermometerSnowflake", title: "Mechanical Resilience", desc: "Sealed, ultra-rugged enclosure rated –55°C to +105°C. Specifically designed to withstand severe vibration and shock environments." }
+    ],
+
+    coreTechnologies: [
+      {
+        id: "architecture",
+        title: "Adaptable Power Architectures",
+        subtitle: "DEPLOYMENT FLEXIBILITY",
+        type: "hardware",
+        icon: "Layers",
+        sideCaption: "MOTS & CUSTOM",
+        description: "CRYONANO Labs has flexible development pathways to meet exact system specification requirements, ensuring rapid integration and mission-specific enhancements.",
+        bullets: [
+          "MOTS: Fast deployment. Proven platforms ready for rapid integration.",
+          "Modified: Tailored Enhancements for voltage, form factor, cooling, and environmental customization.",
+          "Fully Custom: Ground-Up Design. Purpose-built power architecture for mission-specific requirements."
+        ],
+        highlights: [
+          { label: "Deployment", val: "Standard" },
+          { label: "Enhancements", val: "Modified" },
+          { label: "Architecture", val: "Customizable" },
+          { label: "Efficiency", val: "High" }
+        ]
+      },
+      {
+        id: "compliance",
+        title: "Military & Industrial Compliance",
+        subtitle: "MISSION-READY",
+        type: "protection",
+        icon: "ShieldAlert",
+        sideCaption: "MIL-SPEC TOUGH",
+        description: "Engineered to survive and perform under the most brutal operational stressors, certified to exacting military standards.",
+        bullets: [
+          "MIL-STD-704: Aircraft electrical power",
+          "MIL-STD-1399: Shipboard Interfaces",
+          "MIL-STD-461: EMI/EMC Compliance"
+        ],
+        protects: [
+          "Active PFC included",
+          "Convection Cooling supported",
+          "Rack or Frame Mount configurations"
+        ]
+      }
+    ],
+
+    specifications: {
+      "Performance & Capability": [
+        { param: "Supported Chemistries", spec: "Lead-acid, Lithium-ion, NiMH, NiCd" },
+        { param: "Intelligent Control", spec: "Adaptive multi-chemistry algorithms" },
+        { param: "Lifecycle Management", spec: "Advanced battery life maximization" }
+      ],
+      "Protection Systems": [
+        { param: "Overcharging Protection", spec: "Integrated" },
+        { param: "Short Circuit Protection", spec: "Integrated" },
+        { param: "Reverse Polarity", spec: "Protected" },
+        { param: "Thermal Overload", spec: "Active monitoring & shutdown" }
+      ],
+      "Environmental & Mechanical": [
+        { param: "Operating Temperature", spec: "–55°C to +105°C" },
+        { param: "Enclosure", spec: "Sealed, ultra-rugged" },
+        { param: "Shock & Vibration", spec: "Military-grade resilience" },
+        { param: "Mounting Options", spec: "Rack or Frame Mount" },
+        { param: "Cooling", spec: "Convection Cooling" }
+      ],
+      "Standards & Compliance": [
+        { param: "Aviation Power", spec: "MIL-STD-704" },
+        { param: "Naval / Shipboard", spec: "MIL-STD-1399" },
+        { param: "EMI / EMC", spec: "MIL-STD-461" },
+        { param: "Power Factor", spec: "Active PFC" }
+      ]
+    },
+
+    applications: [
+      "Embedded Systems",
+      "Off-Grid Installations",
+      "Mission-Critical Equipment",
+      "Sensitive Avionics",
+      "Communication Systems",
+      "Ground Support Equipment",
+      "Unmanned Aerial Vehicles (UAVs)",
+      "Defense Platforms"
+    ],
+
+    datasheetUrl: "/images/Power Converters & Inverters/battery chargers/Intelligent Battery Chargers.pdf",
+
+    heroImage: "/images/Power Converters & Inverters/battery chargers/image1.avif",
+    gallery: [
+      { url: "/images/Power Converters & Inverters/battery chargers/image2.avif", caption: "Charger" },
+      { url: "/images/Power Converters & Inverters/battery chargers/image1.avif", caption: "Industrial Enclosure" },
+      { url: "/images/Power Converters & Inverters/battery chargers/image2.avif", caption: "Interface" }
+    ],
+
+    cta: {
+      tagline: "Power That Never Quits. When reliability and endurance matter most, CRYONANO delivers."
+    }
+  },
 };

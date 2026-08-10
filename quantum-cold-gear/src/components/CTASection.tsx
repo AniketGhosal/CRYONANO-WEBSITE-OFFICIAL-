@@ -485,6 +485,7 @@ export function CTASection() {
       "/products/dc-dc-system-high",
       "/products/dc-ac-inverters",
       "/products/inverter-400hz-rugged",
+      "/products/battery-chargers",
     ];
 
     if (researchPaths.some((p) => path === p)) {

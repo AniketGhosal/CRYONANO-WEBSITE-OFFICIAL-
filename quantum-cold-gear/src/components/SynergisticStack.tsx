@@ -2,8 +2,9 @@
 // import { motion, AnimatePresence } from "framer-motion";
 // import { Microscope, TestTube, Network, SlidersHorizontal, ChevronRight, Target } from "lucide-react";
 // import { Link } from "react-router-dom";
+// import { productsData } from "@/data/products";
 
-// // Types to avoid 'any'
+// // Types
 // interface Product {
 //   name: string;
 //   desc: string;
@@ -33,16 +34,17 @@
 //   icon: React.ElementType;
 //   image1: string;
 //   image2: string;
+//   image3: string;   // NEW: third image
 //   fallback: string;
 //   theme: Theme;
 //   products: Product[];
 //   outcome: string;
 // }
 
-// // Reusable Theme based strictly on Card 1
+// // Reusable Theme
 // const cardOneTheme: Theme = {
-//   bg: "bg-red-50",          
-//   primary: "text-slate-900",    
+//   bg: "bg-red-50",
+//   primary: "text-slate-900",
 //   secondary: "text-red-700",
 //   iconBg: "bg-red-600 text-white",
 //   cardBorder: "border-red-200",
@@ -53,7 +55,7 @@
 //   inactiveTab: "bg-white text-slate-500 border-slate-200"
 // };
 
-// // 1. Updated Workflow Data (All using Card 1 Theme)
+// // Workflow Data with actual product images – now 3 images per step
 // const workflowSteps: WorkflowStep[] = [
 //   {
 //     id: "prep",
@@ -63,8 +65,9 @@
 //     title: "Sample Preparation & Imaging",
 //     subTitle: "Deterministic Stacking & Inspection",
 //     icon: Microscope,
-//     image1: "/images/scenes/hero-1.jpg", 
-//     image2: "/images/product-renders/2d-transfer-system.jpg",
+//     image1: productsData["2d-transfer-motorised"]?.heroImage || "/images/placeholder.jpg",
+//     image2: productsData["ultraclear-4k"]?.heroImage || "/images/placeholder.jpg",
+//     image3: productsData["nano-stage"]?.heroImage || "/images/placeholder.jpg",
 //     fallback: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070",
 //     theme: cardOneTheme,
 //     products: [
@@ -82,8 +85,9 @@
 //     title: "Electrical & Transport Measurement",
 //     subTitle: "Complete Characterisation Ecosystem",
 //     icon: TestTube,
-//     image1: "/images/scenes/scene-2-back.jpg",
-//     image2: "/images/product-renders/probe-station.jpg",
+//     image1: productsData["psm-100"]?.heroImage || "/images/placeholder.jpg",
+//     image2: productsData["dipstick"]?.heroImage || "/images/placeholder.jpg",
+//     image3: productsData["breakout-box"]?.heroImage || "/images/placeholder.jpg",
 //     fallback: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070",
 //     theme: cardOneTheme,
 //     products: [
@@ -101,8 +105,9 @@
 //     title: "Field & Cryogenic Environment",
 //     subTitle: "Magnetic Field & Extreme Conditions",
 //     icon: Network,
-//     image1: "/images/scenes/scene-3-back.jpg",
-//     image2: "/images/product-renders/magnet-system.jpg",
+//     image1: productsData["spectroscopy-magnet"]?.heroImage || "/images/placeholder.jpg",
+//     image2: productsData["emc2t-2-magnet"]?.heroImage || "/images/placeholder.jpg",
+//     image3: productsData["bitter-magnet"]?.heroImage || "/images/placeholder.jpg",
 //     fallback: "https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=2070",
 //     theme: cardOneTheme,
 //     products: [
@@ -120,8 +125,9 @@
 //     title: "Signal Control & Data Acquisition",
 //     subTitle: "Environmental Control & Measurement Brain",
 //     icon: SlidersHorizontal,
-//     image1: "/images/scenes/hero-2.jpg",
-//     image2: "/images/product-renders/power-converter.jpg",
+//     image1: productsData["breakout-box"]?.heroImage || "/images/placeholder.jpg",
+//     image2: productsData["cryo-clean"]?.heroImage || "/images/placeholder.jpg",
+//     image3: productsData["ac-dc-system-low"]?.heroImage || "/images/placeholder.jpg",
 //     fallback: "https://images.unsplash.com/photo-1635048424329-a9bfb10440f4?q=80&w=2070",
 //     theme: cardOneTheme,
 //     products: [
@@ -150,7 +156,6 @@
 //       >
 //         <div className="relative z-10 flex flex-col gap-1">
 //           <div className="flex justify-between items-center">
-//             {/* FIXED CONTRAST: Explicitly forces text to white on hover */}
 //             <span className={`font-extrabold text-[16px] leading-tight transition-colors ${isProdHovered ? 'text-white' : theme.primary}`}>
 //               {prod.name}
 //             </span>
@@ -158,7 +163,6 @@
 //               <ChevronRight className={`w-3.5 h-3.5 transition-all ${isProdHovered ? 'text-white translate-x-0.5' : 'text-slate-500'}`} />
 //             </div>
 //           </div>
-//           {/* Bigger, Truncated One-Line Description. Forces text to bright white/90 on hover */}
 //           <p className={`text-[13px] font-medium leading-snug pr-6 truncate transition-colors duration-300 ${isProdHovered ? 'text-white/90' : 'text-slate-500'}`}>
 //             {prod.desc}
 //           </p>
@@ -205,7 +209,7 @@
 //           </motion.p>
 //         </div>
 
-//         {/* --- TOP ACTION NAVIGATION TABS (Animated) --- */}
+//         {/* --- TOP ACTION NAVIGATION TABS --- */}
 //         <div className="relative max-w-4xl mx-auto mb-10 hidden md:block">
 //           <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2 rounded-full z-0" />
 //           <div className="relative z-10 flex justify-between items-center w-full px-4">
@@ -229,7 +233,7 @@
 //         </div>
 
 //         {/* --- EXPANDING BENTO GRID --- */}
-//         <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[720px] gap-4 items-stretch">
+//         <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[700px] gap-4 items-stretch">
 //           {workflowSteps.map((step, i) => {
 //             const isActive = activeIndex === i;
 
@@ -248,7 +252,7 @@
 //                 style={{ zIndex: isActive ? 20 : 1 }}
 //               >
                 
-//                 {/* --- NON-HOVERED / COLLAPSED STATE --- */}
+//                 {/* --- COLLAPSED STATE --- */}
 //                 <motion.div 
 //                   animate={{ opacity: isActive ? 0 : 1 }}
 //                   transition={{ duration: 0.2 }}
@@ -264,18 +268,18 @@
 //                   <h4 className={`font-extrabold text-xl lg:text-2xl leading-snug ${step.theme.primary}`}>
 //                     {step.title}
 //                   </h4>
-//                   {/* BIGGER Image Preview in Collapsed State */}
-//                   <div className="relative mt-8 w-full max-w-[220px] h-32 rounded-xl border border-border/50 overflow-hidden shadow-md shrink-0 bg-white">
+//                   {/* Collapsed preview – shows image1 only */}
+//                   <div className="relative mt-8 w-full max-w-[200px] h-28 rounded-xl border border-border/50 overflow-hidden shadow-md shrink-0 bg-white">
 //                     <img 
 //                       src={step.image1} 
 //                       onError={(e) => e.currentTarget.src = step.fallback} 
-//                       className="absolute inset-0 w-full h-full object-cover filter grayscale opacity-70" 
+//                       className="absolute inset-0 w-full h-full object-scale-down p-2" 
 //                       alt={step.title} 
 //                     />
 //                   </div>
 //                 </motion.div>
 
-//                 {/* --- HOVERED / EXPANDED STATE --- */}
+//                 {/* --- EXPANDED STATE --- */}
 //                 <AnimatePresence>
 //                   {isActive && (
 //                     <motion.div 
@@ -283,12 +287,11 @@
 //                       animate={{ opacity: 1 }}
 //                       exit={{ opacity: 0 }}
 //                       transition={{ duration: 0.4, delay: 0.1 }}
-//                       className="absolute inset-0 p-8 flex flex-col h-full overflow-y-auto lg:overflow-hidden scrollbar-hide"
+//                       className="absolute inset-0 p-6 md:p-8 flex flex-col h-full overflow-y-auto lg:overflow-hidden scrollbar-hide"
 //                     >
-                      
 //                       {/* Structured Heading */}
-//                       <div className="mb-4">
-//                         <div className="flex items-center gap-3 mb-2">
+//                       <div className="mb-3">
+//                         <div className="flex items-center gap-3 mb-1.5">
 //                           <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm ${step.theme.iconBg}`}>
 //                             <step.icon className="w-4 h-4" />
 //                           </div>
@@ -296,51 +299,67 @@
 //                             {step.layer}
 //                           </span>
 //                         </div>
-//                         <h3 className={`font-display text-2xl lg:text-[28px] font-extrabold tracking-tight leading-tight ${step.theme.primary}`}>
+//                         <h3 className={`font-display text-xl lg:text-2xl font-extrabold tracking-tight leading-tight ${step.theme.primary}`}>
 //                           {step.title}
 //                         </h3>
-//                         <p className={`text-[16px] font-bold mt-1.5 opacity-80 ${step.theme.secondary}`}>
+//                         <p className={`text-[14px] font-bold mt-1 opacity-80 ${step.theme.secondary}`}>
 //                           {step.subTitle}
 //                         </p>
 //                       </div>
 
-//                       {/* Target Outcome Box */}
-//                       <div className="mb-6 pt-4 border-t border-red-200/50 flex items-start gap-3">
+//                       {/* Target Outcome */}
+//                       <div className="mb-4 pt-3 border-t border-red-200/50 flex items-start gap-3">
 //                         <Target className={`w-5 h-5 shrink-0 mt-0.5 ${step.theme.secondary}`} />
 //                         <div>
-//                           <p className={`text-[10px] font-extrabold uppercase tracking-widest mb-0.5 ${step.theme.secondary}`}>
+//                           <p className={`text-[9px] font-extrabold uppercase tracking-widest mb-0.5 ${step.theme.secondary}`}>
 //                             Target outcome
 //                           </p>
-//                           <p className={`text-[15px] font-bold leading-snug ${step.theme.primary}`}>
+//                           <p className={`text-[14px] font-bold leading-snug ${step.theme.primary}`}>
 //                             {step.outcome}
 //                           </p>
 //                         </div>
 //                       </div>
 
-//                       {/* Clickable Product options */}
-//                       <div className="flex flex-col gap-3 mb-8 relative z-10 w-full lg:max-w-md shrink-0">
+//                       {/* Product Links */}
+//                       <div className="flex flex-col gap-2.5 mb-5 relative z-10 w-full lg:max-w-md shrink-0">
 //                         {step.products.map((prod, idx) => (
 //                           <StackProductItem key={idx} prod={prod} theme={step.theme} />
 //                         ))}
 //                       </div>
 
-//                       {/* TWO SIDE-BY-SIDE Images */}
+//                       {/* THREE SIDE-BY-SIDE IMAGES */}
 //                       <AnimatePresence>
 //                         {isActive && (
 //                           <motion.div
 //                             initial={{ opacity: 0, height: 0, marginTop: 0 }}
-//                             animate={{ opacity: 1, height: "160px", marginTop: "auto" }}
+//                             animate={{ opacity: 1, height: "120px", marginTop: "auto" }}
 //                             exit={{ opacity: 0, height: 0, marginTop: 0 }}
 //                             transition={{ duration: 0.4, ease: "easeInOut" }}
-//                             className="relative w-full flex gap-4 shrink-0"
+//                             className="relative w-full flex gap-2.5 shrink-0 overflow-hidden"
 //                           >
-//                             <div className="flex-1 rounded-2xl overflow-hidden shadow-md bg-white border border-white/50">
-//                               <img src={step.image1} onError={(e) => e.currentTarget.src = step.fallback} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt={step.title} />
-//                               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none" />
+//                             <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
+//                               <img 
+//                                 src={step.image1} 
+//                                 onError={(e) => e.currentTarget.src = step.fallback} 
+//                                 className="w-full h-full object-scale-down" 
+//                                 alt={step.products[0]?.name || "Product image"} 
+//                               />
 //                             </div>
-//                             <div className="flex-1 rounded-2xl overflow-hidden shadow-md bg-white border border-white/50">
-//                               <img src={step.image2} onError={(e) => e.currentTarget.src = step.fallback} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt={step.title} />
-//                               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none" />
+//                             <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
+//                               <img 
+//                                 src={step.image2} 
+//                                 onError={(e) => e.currentTarget.src = step.fallback} 
+//                                 className="w-full h-full object-scale-down" 
+//                                 alt={step.products[1]?.name || "Product image"} 
+//                               />
+//                             </div>
+//                             <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
+//                               <img 
+//                                 src={step.image3} 
+//                                 onError={(e) => e.currentTarget.src = step.fallback} 
+//                                 className="w-full h-full object-scale-down" 
+//                                 alt={step.products[2]?.name || "Product image"} 
+//                               />
 //                             </div>
 //                           </motion.div>
 //                         )}
@@ -358,6 +377,7 @@
 //     </section>
 //   );
 // }
+
 
 
 
@@ -397,7 +417,7 @@ interface WorkflowStep {
   icon: React.ElementType;
   image1: string;
   image2: string;
-  image3: string;   // NEW: third image
+  image3: string;
   fallback: string;
   theme: Theme;
   products: Product[];
@@ -418,7 +438,7 @@ const cardOneTheme: Theme = {
   inactiveTab: "bg-white text-slate-500 border-slate-200"
 };
 
-// Workflow Data with actual product images – now 3 images per step
+// Workflow Data with actual product images
 const workflowSteps: WorkflowStep[] = [
   {
     id: "prep",
@@ -596,7 +616,10 @@ export function SynergisticStack() {
         </div>
 
         {/* --- EXPANDING BENTO GRID --- */}
-        <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[700px] gap-4 items-stretch">
+        {/* Adjusted lg:h-[460px] to remove the extra whitespace left behind by the removed images */}
+        {/* <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[460px] gap-4 items-stretch"> */}
+        {/* --- EXPANDING BENTO GRID --- */}
+        <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[520px] gap-4 items-stretch">
           {workflowSteps.map((step, i) => {
             const isActive = activeIndex === i;
 
@@ -683,50 +706,12 @@ export function SynergisticStack() {
                         </div>
                       </div>
 
-                      {/* Product Links */}
-                      <div className="flex flex-col gap-2.5 mb-5 relative z-10 w-full lg:max-w-md shrink-0">
+                      {/* Product Links - removed mb-5 to fix alignment */}
+                      <div className="flex flex-col gap-2.5 relative z-10 w-full lg:max-w-md shrink-0">
                         {step.products.map((prod, idx) => (
                           <StackProductItem key={idx} prod={prod} theme={step.theme} />
                         ))}
                       </div>
-
-                      {/* THREE SIDE-BY-SIDE IMAGES */}
-                      <AnimatePresence>
-                        {isActive && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                            animate={{ opacity: 1, height: "120px", marginTop: "auto" }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="relative w-full flex gap-2.5 shrink-0 overflow-hidden"
-                          >
-                            <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
-                              <img 
-                                src={step.image1} 
-                                onError={(e) => e.currentTarget.src = step.fallback} 
-                                className="w-full h-full object-scale-down" 
-                                alt={step.products[0]?.name || "Product image"} 
-                              />
-                            </div>
-                            <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
-                              <img 
-                                src={step.image2} 
-                                onError={(e) => e.currentTarget.src = step.fallback} 
-                                className="w-full h-full object-scale-down" 
-                                alt={step.products[1]?.name || "Product image"} 
-                              />
-                            </div>
-                            <div className="flex-1 rounded-xl overflow-hidden shadow-md bg-white border border-white/50 flex items-center justify-center p-1.5">
-                              <img 
-                                src={step.image3} 
-                                onError={(e) => e.currentTarget.src = step.fallback} 
-                                className="w-full h-full object-scale-down" 
-                                alt={step.products[2]?.name || "Product image"} 
-                              />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
 
                     </motion.div>
                   )}

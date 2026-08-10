@@ -289,7 +289,7 @@ export function Footer() {
           <div className="lg:col-span-3 flex flex-col">
             
             {/* Animated CryoNano Logo */}
-            <Link to="/" onClick={handleScrollToTop} className="flex flex-col items-start justify-center cursor-pointer group mb-6 w-fit">
+            {/* <Link to="/" onClick={handleScrollToTop} className="flex flex-col items-start justify-center cursor-pointer group mb-6 w-fit">
               <div className="flex gap-1.5 mb-1">
                 {[0, 1, 2].map((i) => (
                   <motion.div
@@ -306,6 +306,42 @@ export function Footer() {
               <span className="text-[0.65rem] font-bold text-primary tracking-[0.2em] uppercase mt-1">
                 Think Science
               </span>
+            </Link> */}
+
+
+            {/* Animated CryoNano Logo - Synced with Navbar Geometry */}
+            <Link to="/" onClick={handleScrollToTop} className="flex flex-col items-start justify-center cursor-pointer group mb-6 w-fit relative">
+              <style>
+                {`@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600;700;800&display=swap');`}
+              </style>
+              
+              {/* 1. Three Dots: Maroon color, sized and spaced to perfectly span over C, R, and Y */}
+              <div className="flex gap-[7px] mb-1.5 ml-1">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                    className="w-[20px] h-[20px] rounded-full bg-[#800000]"
+                  />
+                ))}
+              </div>
+              
+              {/* 2. CRYONANO: Clean, geometric sans-serif (White for dark footer) */}
+              <span 
+                className="text-[30px] font-[700] text-white leading-none group-hover:text-primary transition-colors duration-300"
+                style={{ fontFamily: "'Jost', 'Century Gothic', sans-serif", letterSpacing: "0.04em" }}
+              >
+                CRYONANO
+              </span>
+              
+              {/* 3. TAGLINE: THINK SCIENCE - aligned flush, sized correctly */}
+              <span 
+              className="text-primary text-[11.5px] font-[800] mt-1.0 leading-none ml-[2px]"
+              style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.28em" }}
+            >
+              THINK SCIENCE
+            </span>
             </Link>
             
             <p className="text-sm text-slate-400 leading-relaxed mb-8">

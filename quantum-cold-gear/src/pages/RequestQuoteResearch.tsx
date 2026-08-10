@@ -943,7 +943,7 @@ const RequestQuoteResearch = () => {
                 </motion.div>
 
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
-                  Request a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-700">Quote</span>
+                  Request a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-700"> Research based Quote</span>
                 </h1>
 
                 <p className="text-base md:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
