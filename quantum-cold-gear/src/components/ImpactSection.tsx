@@ -134,32 +134,11 @@
 //       {/* ======================================================== */}
 //       {/* PART 1 & 2: CREDENTIALS & PUBLISHED RESEARCH             */}
 //       {/* ======================================================== */}
-//       {/* FIX: Added 'bg-gradient-to-b from-white via-slate-50 to-white' 
-//         This provides a decent, professional background color in the middle 
-//         while perfectly fading into white at the top and bottom edges.
-//         This removes any separable horizontal lines and creates a smooth feel!
-//       */}
-//       {/* <div className="relative py-24 bg-gradient-to-b from-white via-slate-50 to-white border-none">
-//         <div className="container relative z-10"> */}
-
-//         {/* ======================================================== */}
-//       {/* PART 1 & 2: CREDENTIALS & PUBLISHED RESEARCH             */}
-//       {/* ======================================================== */}
+//       {/* UPDATED: Removed the tri-color background blobs – now pure white */}
 //       <div className="relative py-0 bg-white border-none overflow-hidden">
         
-//         {/* EYE-CATCHING AMBIENT BACKGROUND (Dense & Light Combination) */}
+//         {/* Pure white ambient background with edge feathering only */}
 //         <div className="absolute inset-0 pointer-events-none z-0">
-          
-//           {/* DENSE COLOR: Deep Royal Blue */}
-//           <div className="absolute top-[-5%] left-[-10%] w-[55vw] h-[55vw] bg-blue-400/25 rounded-full blur-[100px]" />
-          
-//           {/* LIGHT/BRIGHT COLOR: Vibrant Neon Cyan */}
-//           <div className="absolute top-[10%] right-[-5%] w-[50vw] h-[50vw] bg-cyan-200/30 rounded-full blur-[100px]" />
-          
-//           {/* SECONDARY DENSE COLOR: Rich Indigo for depth */}
-//           <div className="absolute bottom-[-5%] left-[15%] w-[60vw] h-[60vw] bg-indigo-400/20 rounded-full blur-[120px]" />
-          
-//           {/* Top and Bottom edge feathering to ensure a 100% seamless merge with other sections */}
 //           <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent" />
 //           <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white to-transparent" />
 //         </div>
@@ -226,19 +205,19 @@
 //               </h2>
 //             </div>
 
-//             {/* Side-by-Side Bi-Color Grid */}
+//             {/* Side-by-Side Bi-Color Grid - NOW IN RED PALETTE */}
 //             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
 //               {publications.slice(0, 3).map((pub, idx) => {
 //                 const cardShades = [
-//                   "from-blue-100 via-blue-50 to-white",
-//                   "from-cyan-100 via-cyan-50 to-white",
-//                   "from-indigo-100 via-indigo-50 to-white"
+//                   "from-red-100 via-red-50 to-white",
+//                   "from-rose-100 via-rose-50 to-white",
+//                   "from-red-100 via-red-50 to-white",
 //                 ];
 
 //                 const glowColors = [
-//                   "bg-blue-400/25",
-//                   "bg-cyan-400/25",
-//                   "bg-indigo-400/25"
+//                   "bg-red-400/25",
+//                   "bg-rose-400/25",
+//                   "bg-red-400/25",
 //                 ];
 
 //                 return (
@@ -252,7 +231,7 @@
 //                       delay: idx * 0.4 
 //                     }}
 //                     whileHover={{ scale: 1.02, y: -5 }}
-//                     className={`group relative flex flex-col rounded-[2rem] p-6 shadow-lg hover:shadow-2xl border border-slate-200 hover:border-blue-400 transition-all duration-500 overflow-hidden bg-gradient-to-br ${cardShades[idx % 3]}`}
+//                     className={`group relative flex flex-col rounded-[2rem] p-6 shadow-lg hover:shadow-2xl border border-slate-200 hover:border-red-400 transition-all duration-500 overflow-hidden bg-gradient-to-br ${cardShades[idx % 3]}`}
 //                   >
 //                     <motion.div 
 //                       animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -262,35 +241,35 @@
 
 //                     <div className="flex justify-between items-center mb-5 pb-4 border-b border-slate-200/80 relative z-10">
 //                       <div className="flex items-center gap-3">
-//                         <span className="font-display text-3xl font-black text-slate-800 group-hover:text-blue-600 transition-colors duration-300">
+//                         <span className="font-display text-3xl font-black text-slate-800 group-hover:text-red-600 transition-colors duration-300">
 //                           0{idx + 1}
 //                         </span>
-//                         <div className="w-6 h-1.5 bg-blue-200 group-hover:bg-blue-500 rounded-full transition-colors duration-300" />
+//                         <div className="w-6 h-1.5 bg-red-200 group-hover:bg-red-500 rounded-full transition-colors duration-300" />
 //                       </div>
                       
-//                       <div className="bg-white border border-slate-200 shadow-sm rounded-xl px-3 py-1.5 flex items-center gap-2 group-hover:border-blue-300 group-hover:shadow-blue-500/10 transition-all duration-300">
-//                         <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-400 transition-colors duration-300">
+//                       <div className="bg-white border border-slate-200 shadow-sm rounded-xl px-3 py-1.5 flex items-center gap-2 group-hover:border-red-300 group-hover:shadow-red-500/10 transition-all duration-300">
+//                         <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-red-400 transition-colors duration-300">
 //                           Published
 //                         </span>
-//                         <span className="text-lg font-black text-slate-800 group-hover:text-blue-700 transition-colors duration-300">
+//                         <span className="text-lg font-black text-slate-800 group-hover:text-red-700 transition-colors duration-300">
 //                           {pub.year}
 //                         </span>
 //                       </div>
 //                     </div>
 
-//                     <h4 className="text-[16px] md:text-[17px] font-extrabold text-slate-900 leading-snug mb-4 relative z-10 group-hover:text-blue-700 group-hover:translate-x-1 transition-all duration-300">
+//                     <h4 className="text-[16px] md:text-[17px] font-extrabold text-slate-900 leading-snug mb-4 relative z-10 group-hover:text-red-700 group-hover:translate-x-1 transition-all duration-300">
 //                       {pub.title}
 //                     </h4>
 
 //                     <div className="flex-grow space-y-1 mb-0 relative z-10">
 //                       <div className="flex items-start gap-2.5">
-//                         <Quote className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-1" />
+//                         <Quote className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />
 //                         <p className="text-[13px] text-slate-600 font-semibold leading-relaxed italic line-clamp-3">
 //                           {pub.authors}
 //                         </p>
 //                       </div>
-//                       <div className="flex items-center gap-2 text-[10px] font-black text-slate-700 tracking-widest uppercase bg-white/80 w-fit px-3 py-1.5 rounded-md border border-slate-200/80 group-hover:border-blue-200 group-hover:text-blue-700 group-hover:translate-x-1 transition-all duration-300">
-//                         <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+//                       <div className="flex items-center gap-2 text-[10px] font-black text-slate-700 tracking-widest uppercase bg-white/80 w-fit px-3 py-1.5 rounded-md border border-slate-200/80 group-hover:border-red-200 group-hover:text-red-700 group-hover:translate-x-1 transition-all duration-300">
+//                         <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
 //                         {pub.journal}
 //                       </div>
 //                     </div>
@@ -300,7 +279,7 @@
 //                         href={pub.url} 
 //                         target="_blank" 
 //                         rel="noopener noreferrer"
-//                         className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 hover:bg-blue-600 text-white transition-all duration-300 shadow-md hover:shadow-blue-500/30 hover:-translate-y-1 group/btn"
+//                         className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 hover:bg-red-600 text-white transition-all duration-300 shadow-md hover:shadow-red-500/30 hover:-translate-y-1 group/btn"
 //                       >
 //                         <span className="text-[11px] font-extrabold tracking-widest uppercase">Read Paper</span>
 //                         <ExternalLink className="w-3.5 h-3.5 text-white group-hover/btn:scale-110 transition-transform duration-300" />
@@ -320,13 +299,13 @@
 //             >
 //               <Link 
 //                 to="/about/research-publications" 
-//                 className="group flex items-center gap-4 px-10 py-4 bg-slate-900 hover:bg-blue-700 text-white rounded-2xl shadow-xl hover:shadow-blue-600/30 transition-all duration-500 transform hover:-translate-y-1"
+//                 className="group flex items-center gap-4 px-10 py-4 bg-slate-900 hover:bg-red-700 text-white rounded-2xl shadow-xl hover:shadow-red-600/30 transition-all duration-500 transform hover:-translate-y-1"
 //               >
 //                 <span className="text-[14px] font-black tracking-[0.2em] uppercase">
 //                   Explore All Publications
 //                 </span>
 //                 <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors duration-500">
-//                   <ArrowRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-colors duration-500 group-hover:translate-x-1" />
+//                   <ArrowRight className="w-4 h-4 text-white group-hover:text-red-700 transition-colors duration-500 group-hover:translate-x-1" />
 //                 </div>
 //               </Link>
 //             </motion.div>
@@ -338,7 +317,6 @@
 //       {/* ======================================================== */}
 //       {/* PART 3: STATS & LOGOS (Dark Premium Theme)               */}
 //       {/* ======================================================== */}
-//       {/* Reordered to be at the bottom as requested */}
 //       <div className="bg-slate-950 py-10 relative">
 //         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-800/40 via-slate-950 to-slate-950" />
         
@@ -421,10 +399,6 @@
 // }
 
 
-
-
-
-
 import { useEffect, useRef } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import { Award, Briefcase, Globe2, BookOpen, Quote, ArrowRight, ExternalLink } from "lucide-react";
@@ -485,27 +459,28 @@ const partnersRow2 = [
   { name: "INST Mohali", logo: "/logos/inst.avif" },
 ];
 
+// --- PUBLICATIONS WITH CORRECT URLs ---
 const publications = [
   {
     year: "2025",
     title: "Dimensional Crossover and Emergence of Novel Phases in Puckered PdSe under Pressure",
     authors: "T Kundu, S Das, K Dey, B Joseph, C Nayak, M Palit, SK Mahatha, K Dolui",
     journal: "Phys. Rev. B 112, 024109",
-    url: "#"
+    url: "https://journals.aps.org/prb/abstract/10.1103/y5tk-c2qw"
   },
   {
     year: "2025",
     title: "Tailored one-dimensional/two-dimensional van der Waals heterostructures for unified analog and digital electronics",
     authors: "B Karmakar, B Das, S Mandal, R Paramanik, S Maity, T Kundu, S Das",
     journal: "Phys. Rev. Applied 23, 054013",
-    url: "#"
+    url: "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.23.054013"
   },
   {
     year: "2025",
     title: "Electron-Magnon Coupling Mediated Magnetotransport in Antiferromagnetic van der Waals Heterostructure",
     authors: "S Maity, S Das, M Palit, K Dey, B Das, T Kundu, R Paramanik, BK De",
     journal: "Phys. Rev. B 111, L140407",
-    url: "#"
+    url: "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.111.L140407"
   },
   {
     year: "2023",
@@ -561,10 +536,8 @@ export function ImpactSection() {
       {/* ======================================================== */}
       {/* PART 1 & 2: CREDENTIALS & PUBLISHED RESEARCH             */}
       {/* ======================================================== */}
-      {/* UPDATED: Removed the tri-color background blobs – now pure white */}
       <div className="relative py-0 bg-white border-none overflow-hidden">
         
-        {/* Pure white ambient background with edge feathering only */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent" />
           <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white to-transparent" />
@@ -632,7 +605,7 @@ export function ImpactSection() {
               </h2>
             </div>
 
-            {/* Side-by-Side Bi-Color Grid - NOW IN RED PALETTE */}
+            {/* Side-by-Side Bi-Color Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
               {publications.slice(0, 3).map((pub, idx) => {
                 const cardShades = [
