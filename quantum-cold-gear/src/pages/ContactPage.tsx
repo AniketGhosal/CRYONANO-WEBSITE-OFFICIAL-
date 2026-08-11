@@ -690,9 +690,9 @@ const ContactPage = () => {
   ];
 
   const socialLinks = [
-    { name: "LinkedIn", icon: Linkedin, link: "#", color: "text-[#0a66c2]", hover: "hover:bg-[#0a66c2] hover:text-white" },
+    { name: "LinkedIn", icon: Linkedin, link: "https://share.google/okMbitk3aGNAxsApF", color: "text-[#0a66c2]", hover: "hover:bg-[#0a66c2] hover:text-white" },
     { name: "Twitter", icon: Twitter, link: "#", color: "text-[#1da1f2]", hover: "hover:bg-[#1da1f2] hover:text-white" },
-    { name: "YouTube", icon: Youtube, link: "#", color: "text-[#ff0000]", hover: "hover:bg-[#ff0000] hover:text-white" },
+    { name: "YouTube", icon: Youtube, link: "https://youtube.com/@cryonano?si=-hNviSoyvrnoRYUI", color: "text-[#ff0000]", hover: "hover:bg-[#ff0000] hover:text-white" },
     { name: "Facebook", icon: Facebook, link: "#", color: "text-[#1877f2]", hover: "hover:bg-[#1877f2] hover:text-white" },
   ];
 
