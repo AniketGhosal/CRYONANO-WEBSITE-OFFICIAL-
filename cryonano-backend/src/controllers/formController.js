@@ -220,3 +220,41 @@ exports.submitResearchQuote = async (req, res) => {
     res.status(500).json({ message: "Server error." });
   }
 };
+
+exports.submitInternApplication = async (req, res) => {
+  try {
+    const { name, email, phone, country, highestDegree, experience, projects, whyCryonano } = req.body;
+
+    // 1. Save to Database
+    const query = `
+      INSERT INTO intern_applications 
+      (name, email, phone, country, highest_degree, experience, projects, why_cryonano) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `;
+    await db.query(query, [name, email, phone, country, highestDegree, experience, projects, whyCryonano]);
+
+    // 2. Format Email
+    const emailHtml = `
+      <h3>New Internship Application</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email} | <strong>Phone:</strong> ${phone}</p>
+      <p><strong>Country:</strong> ${country}</p>
+      <p><strong>Highest Degree:</strong> ${highestDegree}</p>
+      <hr/>
+      <p><strong>Experience:</strong><br/> ${experience || 'None provided'}</p>
+      <p><strong>Projects:</strong><br/> ${projects || 'None provided'}</p>
+      <p><strong>Why CRYONANO:</strong><br/> ${whyCryonano}</p>
+    `;
+
+    // 3. Process Resume Attachment
+    const attachments = formatAttachments(req.files);
+
+    // 4. Send Email
+    await sendEmail(`NEW INTERN APP: ${name}`, emailHtml, attachments);
+
+    res.status(201).json({ message: "Intern application submitted successfully!" });
+  } catch (err) {
+    console.error("Intern Application Error:", err);
+    res.status(500).json({ message: "Server error." });
+  }
+};

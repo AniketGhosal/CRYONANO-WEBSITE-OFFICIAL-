@@ -94,6 +94,19 @@ const createTables = async () => {
       selected_products TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS intern_applications (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL,
+      phone VARCHAR(50),
+      country VARCHAR(100),
+      highest_degree VARCHAR(150),
+      experience TEXT,
+      projects TEXT,
+      why_cryonano TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
   `;
 
   try {

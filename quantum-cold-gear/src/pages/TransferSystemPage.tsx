@@ -1059,7 +1059,7 @@ export default function TransferSystemPage() {
         <Navbar />
 
         {/* 01. HERO SECTION */}
-        <section className="relative pt-16 pb-20 overflow-hidden bg-gradient-to-b from-[#061B35] to-[#0A2647] text-white">
+        <section className="relative pt-5 pb-20 overflow-hidden bg-gradient-to-b from-[#061B35] to-[#0A2647] text-white">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#112240_1px,transparent_1px),linear-gradient(to_bottom,#112240_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
           
           <motion.div 

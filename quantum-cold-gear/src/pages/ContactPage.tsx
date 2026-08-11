@@ -59,16 +59,37 @@
 //     setFormData({ ...formData, [e.target.name]: e.target.value });
 //   };
 
-//   const handleSubmit = (e: React.FormEvent) => {
+//   const handleSubmit = async (e: React.FormEvent) => {
 //     e.preventDefault();
 //     setFormState("submitting");
-//     setTimeout(() => {
-//       setFormState("success");
-//       setTimeout(() => {
+
+//     // // 1. Add the dynamic URL definition here
+//     // const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+//     // 1. Local backend URL for testing
+//     const API_URL = "http://localhost:5000";
+
+//     try {
+//       const response = await fetch(`${API_URL}/api/forms/contact`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(formData)
+//       });
+
+//       if (response.ok) {
+//         setFormState("success");
+//         setTimeout(() => {
+//           setFormState("idle");
+//           setFormData({ name: "", email: "", phone: "", country: "", subject: "", message: "" });
+//         }, 4000);
+//       } else {
 //         setFormState("idle");
-//         setFormData({ name: "", email: "", phone: "", country: "", subject: "", message: "" });
-//       }, 4000);
-//     }, 1500);
+//         alert("Failed to send message. Please try again.");
+//       }
+//     } catch (error) {
+//       console.error(error);
+//       setFormState("idle");
+//       alert("Network error. Is the server running?");
+//     }
 //   };
 
 //   const contactMethods = [
@@ -97,7 +118,7 @@
 //     {
 //       icon: MapPin,
 //       title: "Location",
-//       details: "Bengaluru, India",
+//       details: "Kolkata & Bangalore, India",
 //       description: "Global Operations Hub",
 //       link: "#",
 //       color: "text-emerald-600",
@@ -561,6 +582,13 @@
 
 
 
+
+
+
+
+
+
+
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
@@ -626,8 +654,7 @@ const ContactPage = () => {
     e.preventDefault();
     setFormState("submitting");
 
-    // 1. Add the dynamic URL definition here
-    const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+    const API_URL = "http://localhost:5000";
 
     try {
       const response = await fetch(`${API_URL}/api/forms/contact`, {
@@ -638,10 +665,11 @@ const ContactPage = () => {
 
       if (response.ok) {
         setFormState("success");
+        // Reset form after 3 seconds
         setTimeout(() => {
           setFormState("idle");
           setFormData({ name: "", email: "", phone: "", country: "", subject: "", message: "" });
-        }, 4000);
+        }, 3000);
       } else {
         setFormState("idle");
         alert("Failed to send message. Please try again.");
@@ -712,13 +740,17 @@ const ContactPage = () => {
   ];
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+      {/* ====== NAVBAR - FIXED AT TOP ====== */}
+      <div className="fixed top-0 left-0 w-full z-50">
         <Navbar />
+      </div>
 
-        <main>
+      {/* ====== MAIN CONTENT WITH TOP PADDING ====== */}
+      <PageTransition>
+        <main className="pt-[80px]">
           {/* Breadcrumb - compact */}
-          <div className="bg-white border-b border-slate-200 sticky top-[72px] z-40 shadow-sm">
+          <div className="bg-white border-b border-slate-200 sticky top-[120px] z-40 shadow-sm">
             <div className="container py-2 flex items-center gap-3">
               <Link
                 to="/"
@@ -858,137 +890,153 @@ const ContactPage = () => {
                     Fill in the form and our team will get back to you.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="space-y-4 flex-1 flex flex-col">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                          Name <span className="text-primary">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                          Email <span className="text-primary">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
-                          placeholder="john@company.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                          Phone Number <span className="text-primary">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
-                          placeholder="+91 98765 43210"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                          Country
-                        </label>
-                        <select
-                          name="country"
-                          value={formData.country}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all appearance-none"
-                        >
-                          <option value="">Select Country</option>
-                          <option value="India">India</option>
-                          <option value="USA">USA</option>
-                          <option value="UK">UK</option>
-                          <option value="Germany">Germany</option>
-                          <option value="France">France</option>
-                          <option value="Japan">Japan</option>
-                          <option value="China">China</option>
-                          <option value="Singapore">Singapore</option>
-                          <option value="Australia">Australia</option>
-                          <option value="Canada">Canada</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
-                        placeholder="Product Inquiry"
-                      />
-                    </div>
-
-                    <div className="flex-1">
-                      <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
-                        Message <span className="text-primary">*</span>
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={4}
-                        className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all resize-none h-24"
-                        placeholder="Tell us about your project..."
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={formState === "submitting"}
-                      className="w-full group relative px-6 py-3 bg-primary hover:bg-red-700 text-white font-extrabold text-sm rounded-lg transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 flex items-center justify-center gap-2 overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
-                    >
-                      <span className="relative z-10 flex items-center gap-2">
-                        {formState === "submitting" ? "Sending..." : "Send Message"}
-                        <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </span>
+                  <AnimatePresence mode="wait">
+                    {formState === "success" ? (
+                      // ✅ SUCCESS MESSAGE (replaces the entire form)
                       <motion.div
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 z-0"
-                      />
-                    </button>
-                  </form>
-
-                  <AnimatePresence>
-                    {formState === "success" && (
-                      <motion.div
+                        key="success"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2"
+                        transition={{ duration: 0.4 }}
+                        className="flex-1 flex flex-col items-center justify-center py-8 text-center"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                        <span className="text-emerald-800 text-sm font-medium">
-                          Message sent successfully!
-                        </span>
+                        <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
+                          <CheckCircle2 className="w-8 h-8 text-emerald-500" />
+                        </div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-2">Thank You!</h4>
+                        <p className="text-sm text-slate-600 max-w-xs mx-auto">
+                          Your message has been sent. Our team will get back to you shortly.
+                        </p>
+                        <p className="text-xs text-slate-400 mt-4">Redirecting back to form...</p>
                       </motion.div>
+                    ) : (
+                      // 📝 FORM
+                      <motion.form
+                        key="form"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        onSubmit={handleSubmit}
+                        className="space-y-4 flex-1 flex flex-col"
+                      >
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                              Name <span className="text-primary">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              required
+                              className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
+                              placeholder="John Doe"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                              Email <span className="text-primary">*</span>
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              required
+                              className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
+                              placeholder="john@company.com"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                              Phone Number <span className="text-primary">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
+                              placeholder="+91 98765 43210"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                              Country
+                            </label>
+                            <select
+                              name="country"
+                              value={formData.country}
+                              onChange={handleChange}
+                              className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all appearance-none"
+                            >
+                              <option value="">Select Country</option>
+                              <option value="India">India</option>
+                              <option value="USA">USA</option>
+                              <option value="UK">UK</option>
+                              <option value="Germany">Germany</option>
+                              <option value="France">France</option>
+                              <option value="Japan">Japan</option>
+                              <option value="China">China</option>
+                              <option value="Singapore">Singapore</option>
+                              <option value="Australia">Australia</option>
+                              <option value="Canada">Canada</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                            Subject
+                          </label>
+                          <input
+                            type="text"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all"
+                            placeholder="Product Inquiry"
+                          />
+                        </div>
+
+                        <div className="flex-1">
+                          <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-widest mb-1">
+                            Message <span className="text-primary">*</span>
+                          </label>
+                          <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            rows={4}
+                            className="w-full px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-lg text-slate-800 text-sm font-medium focus:outline-none focus:border-primary focus:bg-white transition-all resize-none h-24"
+                            placeholder="Tell us about your project..."
+                          />
+                        </div>
+
+                        <button
+                          type="submit"
+                          disabled={formState === "submitting"}
+                          className="w-full group relative px-6 py-3 bg-primary hover:bg-red-700 text-white font-extrabold text-sm rounded-lg transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 flex items-center justify-center gap-2 overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          <span className="relative z-10 flex items-center gap-2">
+                            {formState === "submitting" ? "Sending..." : "Send Message"}
+                            <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          </span>
+                          <motion.div
+                            animate={{ x: ["-100%", "200%"] }}
+                            transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 z-0"
+                          />
+                        </button>
+                      </motion.form>
                     )}
                   </AnimatePresence>
                 </div>
@@ -1132,10 +1180,10 @@ const ContactPage = () => {
             </div>
           </section>
         </main>
+      </PageTransition>
 
-        <Footer />
-      </div>
-    </PageTransition>
+      <Footer />
+    </div>
   );
 };
 

@@ -1256,7 +1256,7 @@ const applicationNotes = [
         type: "pdf-download",
         title: "Electromagnet Optical Access Manual",
         desc: "Document: Manual of EMCT2 with optical access compatibility.",
-        url: "/images/ApplicationNotes/EMCT2T_optical access_INST MOhali_Manual (1).pdf",
+        url: "/images/ApplicationNotes/EMCT2T_optical access_INST MOhali_Manual.pdf",
         filename: "EMCT2_Optical_Manual.pdf"
       },
       {
@@ -1623,31 +1623,103 @@ export function ApplicationNotesPage() {
     }
   };
 
+  // return (
+  //   <div className="min-h-screen bg-white font-sans flex flex-col relative overflow-hidden selection:bg-primary/20 selection:text-primary">
+  //     <Navbar />
+
+  //     {/* ========================================== */}
+  //     {/* HERO SECTION */}
+  //     {/* ========================================== */}
+  //     <section className="relative pt-20 pb-12 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden">
+  //       <motion.div
+  //         animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.4, 0.2] }}
+  //         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+  //         className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-bl from-primary/5 to-transparent blur-3xl pointer-events-none"
+  //       />
+
+  //       <motion.div
+  //         initial={{ opacity: 0, x: -20 }}
+  //         animate={{ opacity: 1, x: 0 }}
+  //         transition={{ duration: 0.6, delay: 0.2 }}
+  //         className="absolute top-4 left-4 z-20"
+  //       >
+  //         <Link to="/" className="flex items-center gap-2 px-3.5 py-1.5 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-slate-700 font-semibold hover:bg-white hover:shadow-md transition-all group text-xs">
+  //           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+  //           <span>Back to Home</span>
+  //         </Link>
+  //       </motion.div>
+
+  //       <motion.div
+  //         variants={staggerContainer}
+  //         initial="hidden"
+  //         animate="show"
+  //         className="relative z-10 max-w-4xl mx-auto"
+  //       >
+  //         <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-black tracking-widest uppercase mb-4 shadow-sm">
+  //           <BookOpen className="w-3 h-3" /> Research Library
+  //         </motion.div>
+  //         <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+  //           Application <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-700">Notes</span>
+  //         </motion.h1>
+  //         <motion.p variants={fadeInUp} className="text-base text-slate-500 leading-relaxed font-medium max-w-2xl mx-auto">
+  //           Detailed application notes written by staff and institutional users,
+  //           demonstrating the deployment of CRYONANO instruments in cutting-edge
+  //           quantum and cryogenic research.
+  //         </motion.p>
+
+  //         {/* Quick Stats */}
+  //         <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-5 mt-5">
+  //           <div className="flex items-center gap-2 text-sm text-slate-600">
+  //             <Award className="w-4 h-4 text-primary" />
+  //             <span className="font-bold">{applicationNotes.length}</span>
+  //             <span>Application Notes</span>
+  //           </div>
+  //           <div className="flex items-center gap-2 text-sm text-slate-600">
+  //             <Users className="w-4 h-4 text-primary" />
+  //             <span className="font-bold">3+</span>
+  //             <span>Institutions</span>
+  //           </div>
+  //           <div className="flex items-center gap-2 text-sm text-slate-600">
+  //             <Globe className="w-4 h-4 text-primary" />
+  //             <span className="font-bold">5+</span>
+  //             <span>Publications</span>
+  //           </div>
+  //         </motion.div>
+  //       </motion.div>
+  //     </section>
+
+
   return (
-    <div className="min-h-screen bg-white font-sans flex flex-col relative overflow-hidden selection:bg-primary/20 selection:text-primary">
-      <Navbar />
+    <div className="min-h-screen bg-white font-sans flex flex-col relative overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+      
+      {/* 1. FIXED NAVBAR */}
+      <div className="fixed top-0 left-0 w-full z-50 shadow-sm">
+        <Navbar />
+      </div>
+
+      {/* ========================================== */}
+      {/* BREADCRUMB BAR (With padding to clear the fixed Navbar) */}
+      {/* ========================================== */}
+      <div className="bg-white border-b border-slate-200 pt-[12 0px]">
+        <div className="container py-3 px-6">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors w-fit"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to Home
+          </Link>
+        </div>
+      </div>
 
       {/* ========================================== */}
       {/* HERO SECTION */}
       {/* ========================================== */}
-      <section className="relative pt-20 pb-12 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden">
+      <section className="relative pt-12 pb-12 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden">
         <motion.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-bl from-primary/5 to-transparent blur-3xl pointer-events-none"
         />
-
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="absolute top-4 left-4 z-20"
-        >
-          <Link to="/" className="flex items-center gap-2 px-3.5 py-1.5 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-slate-700 font-semibold hover:bg-white hover:shadow-md transition-all group text-xs">
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
-          </Link>
-        </motion.div>
 
         <motion.div
           variants={staggerContainer}

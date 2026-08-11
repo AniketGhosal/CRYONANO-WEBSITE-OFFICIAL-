@@ -865,7 +865,8 @@ export function DownloadsPage() {
         {/* ========================================== */}
         {/* HERO SECTION – Compact */}
         {/* ========================================== */}
-        <section className="relative pt-14 pb-8 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden">
+        {/* <section className="relative pt-14 pb-8 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden"> */}
+        <section className="relative pt-[40px] pb-8 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100 overflow-hidden">
           <motion.div
             animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}

@@ -180,58 +180,63 @@ import RequestQuoteGateway from "./pages/RequestQuoteGateway";
 
 import DownloadsPage from "./pages/DownloadsPage";
 
+import { ScrollToTop } from "@/components/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        
-        {/* === SPECIFIC PRODUCT ROUTES === */}
-        <Route path="/products/quantum-volt" element={<QuantumVoltPage />} />
-        <Route path="/products/breakout-box" element={<CryoConnectBreakoutBoxPage />} />
-        <Route path="/products/cryo-clean" element={<CryoCleanFiltersPage />} />
-        <Route path="/products/DAC-system" element={<DACSystemPage />} />
-        <Route path="/products/nano-stage" element={<CryogenicNanoStagePage />} />
-        <Route path="/products/2d-transfer-system" element={<TwoDTransferSystemPage />} />
-        <Route path="/products/psm-100" element={<ProbeStationPage />} />
-        <Route path="/products/cryoscope-controller" element={<MicroscopeMotorisedController />} />
-        <Route path="/products/dipstick" element={<CryogenicDipstickPage />} />
-        <Route path="/products/ultraclear-4k" element={<UltraClear4KPage />} />
-        <Route path="/products/2d-transfer-motorised" element={<TransferSystemPage />} />
-        <Route path="/products/spectroscopy-magnet" element={<SpectroscopyElectromagnetPage />} />
-        <Route path="/products/bitter-magnet" element={<BitterElectromagnetPage />} />
-        <Route path="/products/emc2t-2-magnet" element={<EMC2TMagnetPage />} />
-        <Route path="/products/ac-dc-system-low" element={<AcDcSystemPageLow />} />
-        <Route path="/products/ac-dc-system-high" element={<AcDcSystemPageHigh />} />
-        <Route path="/products/dc-dc-system-low" element={<DcDcSystemPageLow />} />
-        <Route path="/products/dc-dc-system-high" element={<DcDcSystemPageHigh />} />
-        <Route path="/products/dc-ac-inverters" element={<DcAcInvertersPage />} />
-        <Route path="/products/inverter-400hz-rugged" element={<Inverter400HzPage />} />
-        <Route path="/products/battery-chargers" element={<IntelligentBatteryChargersPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/support" element={<ServiceSupportPage />} />
-        <Route path="/about/research-publications" element={<ResearchPublicationsPage />} />
-        <Route path="/knowledge-bank/archives" element={<ArchivedProductsPage />} />
-        <Route path="/knowledge-bank/application-notes" element={<ApplicationNotesPage />} />
+    <>
+      <ScrollToTop />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            
+            {/* === SPECIFIC PRODUCT ROUTES === */}
+            <Route path="/products/quantum-volt" element={<QuantumVoltPage />} />
+            <Route path="/products/breakout-box" element={<CryoConnectBreakoutBoxPage />} />
+            <Route path="/products/cryo-clean" element={<CryoCleanFiltersPage />} />
+            <Route path="/products/DAC-system" element={<DACSystemPage />} />
+            <Route path="/products/nano-stage" element={<CryogenicNanoStagePage />} />
+            <Route path="/products/2d-transfer-system" element={<TwoDTransferSystemPage />} />
+            <Route path="/products/psm-100" element={<ProbeStationPage />} />
+            <Route path="/products/cryoscope-controller" element={<MicroscopeMotorisedController />} />
+            <Route path="/products/dipstick" element={<CryogenicDipstickPage />} />
+            <Route path="/products/ultraclear-4k" element={<UltraClear4KPage />} />
+            <Route path="/products/2d-transfer-motorised" element={<TransferSystemPage />} />
+            <Route path="/products/spectroscopy-magnet" element={<SpectroscopyElectromagnetPage />} />
+            <Route path="/products/bitter-magnet" element={<BitterElectromagnetPage />} />
+            <Route path="/products/emc2t-2-magnet" element={<EMC2TMagnetPage />} />
+            <Route path="/products/ac-dc-system-low" element={<AcDcSystemPageLow />} />
+            <Route path="/products/ac-dc-system-high" element={<AcDcSystemPageHigh />} />
+            <Route path="/products/dc-dc-system-low" element={<DcDcSystemPageLow />} />
+            <Route path="/products/dc-dc-system-high" element={<DcDcSystemPageHigh />} />
+            <Route path="/products/dc-ac-inverters" element={<DcAcInvertersPage />} />
+            <Route path="/products/inverter-400hz-rugged" element={<Inverter400HzPage />} />
+            <Route path="/products/battery-chargers" element={<IntelligentBatteryChargersPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/support" element={<ServiceSupportPage />} />
+            <Route path="/about/research-publications" element={<ResearchPublicationsPage />} />
+            <Route path="/knowledge-bank/archives" element={<ArchivedProductsPage />} />
+            <Route path="/knowledge-bank/application-notes" element={<ApplicationNotesPage />} />
 
-        <Route path="/about/awards" element={<Awards />} />
-        <Route path="/about/news" element={<NewsEvents />} />
-        <Route path="/about/careers" element={<Careers />} />
-        <Route path="/about/product-videos" element={<ProductVideos />} />
-        <Route path="/about/intern" element={<Intern />} />
+            <Route path="/about/awards" element={<Awards />} />
+            <Route path="/about/news" element={<NewsEvents />} />
+            <Route path="/about/careers" element={<Careers />} />
+            <Route path="/about/product-videos" element={<ProductVideos />} />
+            <Route path="/about/intern" element={<Intern />} />
 
-        <Route path="/request-quote/research" element={<RequestQuoteResearch />} />
-        <Route path="/request-quote/industry" element={<RequestQuoteIndustry />} />
-        <Route path="/request-quote" element={<RequestQuoteGateway />} />
+            <Route path="/request-quote/research" element={<RequestQuoteResearch />} />
+            <Route path="/request-quote/industry" element={<RequestQuoteIndustry />} />
+            <Route path="/request-quote" element={<RequestQuoteGateway />} />
 
-        <Route path="/knowledge-bank/downloads" element={<DownloadsPage />} />
-      </Routes>
-    </AnimatePresence>
+            <Route path="/knowledge-bank/downloads" element={<DownloadsPage />} />
+          </Routes>
+        </AnimatePresence>
+    </>
   );
 };
 

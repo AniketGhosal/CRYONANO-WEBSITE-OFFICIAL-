@@ -1,6 +1,6 @@
 // import { useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
-// import { ArrowRight, Phone, Mail, UserPlus, Send, CheckCircle2, X, Sparkles } from "lucide-react";
+// import { ArrowRight, Phone, Mail, UserPlus, Send, CheckCircle2, X } from "lucide-react";
 // import { Link, useLocation } from "react-router-dom";
 
 // export function CTASection() {
@@ -52,6 +52,7 @@
 //       "/products/dc-dc-system-high",
 //       "/products/dc-ac-inverters",
 //       "/products/inverter-400hz-rugged",
+//       "/products/battery-chargers",
 //     ];
 
 //     if (researchPaths.some((p) => path === p)) {
@@ -77,24 +78,44 @@
 //     window.scrollTo({ top: 0, behavior: "smooth" });
 //   };
 
-//   // Handle Form Submission – matches ContactPage
-//   const handleSubmit = (e: React.FormEvent) => {
+//   // Handle Form Submission – API Integration
+//   const handleSubmit = async (e: React.FormEvent) => {
 //     e.preventDefault();
 //     setIsSubmitting(true);
 
-//     setTimeout(() => {
-//       setIsSubmitting(false);
-//       setShowModal(true);
-//       // Reset form after success
-//       setFormData({
-//         name: "",
-//         email: "",
-//         phone: "",
-//         country: "",
-//         subject: "",
-//         message: "",
+//     // // 1. Add the dynamic URL definition here
+//     // const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+//     // 1. Local backend URL for testing
+//     const API_URL = "http://localhost:5000";
+
+//     try {
+//       const response = await fetch(`${API_URL}/api/forms/contact`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(formData)
 //       });
-//     }, 1200);
+
+//       if (response.ok) {
+//         setIsSubmitting(false);
+//         setShowModal(true);
+//         // Reset form after success
+//         setFormData({
+//           name: "",
+//           email: "",
+//           phone: "",
+//           country: "",
+//           subject: "",
+//           message: "",
+//         });
+//       } else {
+//         setIsSubmitting(false);
+//         alert("Failed to send message. Please try again.");
+//       }
+//     } catch (error) {
+//       console.error(error);
+//       setIsSubmitting(false);
+//       alert("Network error. Is the server running?");
+//     }
 //   };
 
 //   return (
@@ -430,15 +451,14 @@
 
 
 
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, UserPlus, Send, CheckCircle2, X } from "lucide-react";
+import { ArrowRight, Phone, Mail, UserPlus, Send, CheckCircle2 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export function CTASection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const location = useLocation();
 
   // Form state – matches ContactPage
@@ -516,8 +536,7 @@ export function CTASection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Add the dynamic URL definition here
-    const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+    const API_URL = "http://localhost:5000";
 
     try {
       const response = await fetch(`${API_URL}/api/forms/contact`, {
@@ -528,16 +547,19 @@ export function CTASection() {
 
       if (response.ok) {
         setIsSubmitting(false);
-        setShowModal(true);
-        // Reset form after success
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          country: "",
-          subject: "",
-          message: "",
-        });
+        setShowSuccess(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            country: "",
+            subject: "",
+            message: "",
+          });
+        }, 3000);
       } else {
         setIsSubmitting(false);
         alert("Failed to send message. Please try again.");
@@ -567,7 +589,7 @@ export function CTASection() {
           />
         </div>
 
-        {/* Main container – background stays as current (slate-300) */}
+        {/* Main container */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -697,182 +719,167 @@ export function CTASection() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-3.5">
-                  {/* Name & Email – row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                        Name <span className="text-primary">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                        Email <span className="text-primary">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
-                        placeholder="john@company.com"
-                      />
-                    </div>
-                  </div>
+                <AnimatePresence mode="wait">
+                  {showSuccess ? (
+                    // ✅ SUCCESS MESSAGE (shown inside the form block)
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.4 }}
+                      className="relative z-10 flex flex-col items-center justify-center py-10 text-center"
+                    >
+                      <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
+                        <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Thank You!</h4>
+                      <p className="text-sm text-slate-400 max-w-xs mx-auto">
+                        Your consultation request has been submitted. Our engineering team will contact you shortly.
+                      </p>
+                      <p className="text-xs text-slate-500 mt-4">Redirecting back to form...</p>
+                    </motion.div>
+                  ) : (
+                    // 📝 FORM
+                    <motion.form
+                      key="form"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      onSubmit={handleSubmit}
+                      className="relative z-10 space-y-3.5"
+                    >
+                      {/* Name & Email – row */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                            Name <span className="text-primary">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
+                            placeholder="John Doe"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                            Email <span className="text-primary">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
+                            placeholder="john@company.com"
+                          />
+                        </div>
+                      </div>
 
-                  {/* Phone & Country – row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                        Phone Number <span className="text-primary">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
-                        placeholder="+91 98765 43210"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                        Country
-                      </label>
-                      <select
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all appearance-none"
+                      {/* Phone & Country – row */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                            Phone Number <span className="text-primary">*</span>
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
+                            placeholder="+91 98765 43210"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                            Country
+                          </label>
+                          <select
+                            name="country"
+                            value={formData.country}
+                            onChange={handleChange}
+                            className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all appearance-none"
+                          >
+                            <option value="">Select Country</option>
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Japan">Japan</option>
+                            <option value="China">China</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Subject */}
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                          Subject
+                        </label>
+                        <input
+                          type="text"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
+                          placeholder="Product Inquiry"
+                        />
+                      </div>
+
+                      {/* Message */}
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
+                          Message <span className="text-primary">*</span>
+                        </label>
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={3}
+                          placeholder="Tell us about your project..."
+                          className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all resize-none placeholder:text-slate-600"
+                        />
+                      </div>
+
+                      {/* Submit Button */}
+                      <button
+                        disabled={isSubmitting}
+                        type="submit"
+                        className="w-full py-3.5 rounded-xl font-bold text-white bg-primary hover:bg-red-700 shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                       >
-                        <option value="">Select Country</option>
-                        <option value="India">India</option>
-                        <option value="USA">USA</option>
-                        <option value="UK">UK</option>
-                        <option value="Germany">Germany</option>
-                        <option value="France">France</option>
-                        <option value="Japan">Japan</option>
-                        <option value="China">China</option>
-                        <option value="Singapore">Singapore</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Subject */}
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
-                      placeholder="Product Inquiry"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
-                      Message <span className="text-primary">*</span>
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={3}
-                      placeholder="Tell us about your project..."
-                      className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all resize-none placeholder:text-slate-600"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    disabled={isSubmitting}
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl font-bold text-white bg-primary hover:bg-red-700 shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                      />
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" /> Request Consultation
-                      </>
-                    )}
-                  </button>
-                </form>
+                        {isSubmitting ? (
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                          />
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" /> Request Consultation
+                          </>
+                        )}
+                      </button>
+                    </motion.form>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>
         </motion.div>
       </div>
-
-      {/* Success Modal */}
-      <AnimatePresence>
-        {showModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowModal(false)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm cursor-pointer"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 text-center"
-            >
-              <button
-                onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 className="w-10 h-10 text-emerald-500" />
-              </div>
-
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Thank You!</h3>
-              <p className="text-slate-600 font-medium mb-8 leading-relaxed">
-                Your consultation request has been successfully submitted. Our
-                engineering team will review your requirements and contact you
-                shortly.
-              </p>
-
-              <button
-                onClick={() => setShowModal(false)}
-                className="w-full py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 transition-colors shadow-md"
-              >
-                Close Window
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
