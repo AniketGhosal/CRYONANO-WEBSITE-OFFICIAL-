@@ -295,7 +295,7 @@ import {
 } from "lucide-react";
 
 const capabilities = [
-  { icon: Crosshair, title: "Sub-Micron Accuracy", desc: "Positioning accuracy down to < 1µm" },
+  { icon: Crosshair, title: "Micron Accuracy", desc: "Positioning accuracy down to 1-2µm" },
   { icon: Eye, title: "Optical Telemetry", desc: "Real-time 4K visual feedback" },
   { icon: Settings, title: "Motorized Control", desc: "Automated multi-axis manipulation" },
   { icon: Repeat, title: "High-Yield Scalability", desc: "Engineered for deterministic repeatability" }
@@ -471,7 +471,7 @@ export function FlagshipProduct() {
               className="grid grid-cols-3 gap-3 md:gap-4"
             >
               <div className="flex flex-col items-center justify-center p-3 md:p-4 rounded-2xl bg-[#1c1f26] border border-slate-700/50 hover:border-red-900/50 transition-colors cursor-default shadow-lg">
-                <span className="text-xl md:text-2xl font-black text-white">&lt; 1 µm</span>
+                <span className="text-xl md:text-2xl font-black text-white"> 1-2 µm</span>
                 <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">XY Precision</span>
               </div>
               <div className="flex flex-col items-center justify-center p-3 md:p-4 rounded-2xl bg-[#1c1f26] border border-slate-700/50 hover:border-red-900/50 transition-colors cursor-default shadow-lg">
@@ -479,8 +479,8 @@ export function FlagshipProduct() {
                 <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">Theta Control</span>
               </div>
               <div className="flex flex-col items-center justify-center p-3 md:p-4 rounded-2xl bg-[#1c1f26] border border-slate-700/50 hover:border-red-900/50 transition-colors cursor-default shadow-lg">
-                <span className="text-xl md:text-2xl font-black text-white">50 nm</span>
-                <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">Z-Resolution</span>
+                <span className="text-xl md:text-2xl font-black text-white">4K</span>
+                <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">High Definition</span>
               </div>
             </motion.div>
 

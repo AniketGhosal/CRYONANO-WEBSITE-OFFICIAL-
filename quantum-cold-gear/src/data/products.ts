@@ -1722,12 +1722,12 @@ export const productsData: Record<string, any> = {
   datasheetUrl: "/images/Cryogenics/psm-100/Probe Station.pdf",
 
   // 2. ADDED HERO IMAGE:
-  heroImage: "/images/Cryogenics/psm-100/image1.avif",
+  heroImage: "/images/Cryogenics/psm-100/image3.png",
 
   gallery: [
     { url: "/images/Cryogenics/psm-100/image1.avif", caption: "Probe Station Assembly" },
     { url: "/images/Cryogenics/psm-100/image2.avif", caption: "Micro-manipulator and Probe Arm" },
-      { url: "/images/Cryogenics/psm-100/image1.avif", caption: "Cryogenic Sample Stage" }
+      { url: "/images/Cryogenics/psm-100/image3.png", caption: "Cryogenic Sample Stage" }
   ],
 
   cta: {
