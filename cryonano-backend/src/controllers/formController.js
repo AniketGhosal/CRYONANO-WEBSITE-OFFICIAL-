@@ -135,7 +135,8 @@ exports.submitContact = async (req, res) => {
       <p><strong>Message:</strong></p>
       <p>${message}</p>
     `;
-    await sendEmail(`NEW CONTACT: ${subject || 'General Inquiry'}`, emailHtml);
+    // await sendEmail(`NEW CONTACT: ${subject || 'General Inquiry'}`, emailHtml);
+    await sendEmail(`NEW CONTACT: ${subject || 'General Inquiry'}`, emailHtml, [], email, name);
 
     res.status(201).json({ message: "Message sent successfully!" });
   } catch (err) {
@@ -173,7 +174,8 @@ exports.submitIndustryQuote = async (req, res) => {
     // Process attachments
     const attachments = formatAttachments(req.files);
 
-    await sendEmail("NEW QUOTE: Industry Request", emailHtml, attachments);
+    // await sendEmail("NEW QUOTE: Industry Request", emailHtml, attachments);
+    await sendEmail("NEW QUOTE: Industry Request", emailHtml, attachments, email, `${firstName} ${lastName}`);
 
     res.status(201).json({ message: "Industry quote submitted successfully!" });
   } catch (err) {
@@ -212,7 +214,8 @@ exports.submitResearchQuote = async (req, res) => {
     // Process attachments
     const attachments = formatAttachments(req.files);
 
-    await sendEmail("NEW QUOTE: Research Request", emailHtml, attachments);
+    // await sendEmail("NEW QUOTE: Research Request", emailHtml, attachments);
+    await sendEmail("NEW QUOTE: Research Request", emailHtml, attachments, email, `${firstName} ${lastName}`);
 
     res.status(201).json({ message: "Research quote submitted successfully!" });
   } catch (err) {
@@ -250,7 +253,8 @@ exports.submitInternApplication = async (req, res) => {
     const attachments = formatAttachments(req.files);
 
     // 4. Send Email
-    await sendEmail(`NEW INTERN APP: ${name}`, emailHtml, attachments);
+    // await sendEmail(`NEW INTERN APP: ${name}`, emailHtml, attachments);
+    await sendEmail(`NEW INTERN APP: ${name}`, emailHtml, attachments, email, name);
 
     res.status(201).json({ message: "Intern application submitted successfully!" });
   } catch (err) {

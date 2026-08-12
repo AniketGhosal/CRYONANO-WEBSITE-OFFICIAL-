@@ -35,7 +35,8 @@ exports.register = async (req, res) => {
       <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
       <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
     `;
-    await sendEmail("ALERT: New User Registered on CRYONANO", emailHtml);
+    // await sendEmail("ALERT: New User Registered on CRYONANO", emailHtml);
+    await sendEmail("ALERT: New User Registered on CRYONANO", emailHtml, [], email, name);
 
     res.status(201).json({ token, user: newUser });
   } catch (err) {
@@ -72,7 +73,8 @@ exports.login = async (req, res) => {
       <p><strong>Company:</strong> ${user.company || 'N/A'}</p>
       <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
     `;
-    await sendEmail("ALERT: User Login Activity", emailHtml);
+    // await sendEmail("ALERT: User Login Activity", emailHtml);
+    await sendEmail("ALERT: User Login Activity", emailHtml, [], user.email, user.name);
 
     delete user.password;
     res.json({ token, user });
