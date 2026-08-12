@@ -1569,7 +1569,7 @@ const About = () => {
       </div>
 
       {/* ====== 2. SPACER (pushes content down so it doesn't overlap the navbar) ====== */}
-      <div className="h-[112px] w-full" />
+      <div className="h-[120px] w-full" />
 
       <PageTransition>
         <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-primary/20 selection:text-primary overflow-x-hidden">
@@ -1581,13 +1581,13 @@ const About = () => {
               <div className="container py-3 flex items-center gap-2">
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-1.5 text-[10px] font-bold text-slate-500 hover:text-primary transition-colors uppercase tracking-widest"
+                  className="inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-500 hover:text-primary transition-colors uppercase tracking-widest"
                 >
                   <ArrowLeft className="h-6 w-3" />
                   Back
                 </Link>
-                <span className="text-slate-300 font-bold text-[10px]">/</span>
-                <span className="text-[10px] font-bold text-primary uppercase tracking-widest">About Us</span>
+                <span className="text-slate-300 font-bold text-[15px]">/</span>
+                <span className="text-[15px] font-bold text-primary uppercase tracking-widest">About Us</span>
               </div>
             </div>
 

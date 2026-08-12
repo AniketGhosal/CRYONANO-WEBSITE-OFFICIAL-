@@ -1700,7 +1700,7 @@ export function ApplicationNotesPage() {
       {/* ========================================== */}
       {/* BREADCRUMB BAR (With padding to clear the fixed Navbar) */}
       {/* ========================================== */}
-      <div className="bg-white border-b border-slate-200 pt-[12 0px]">
+      <div className="bg-white border-b border-slate-200 pt-[120px]">
         <div className="container py-3 px-6">
           <Link
             to="/"

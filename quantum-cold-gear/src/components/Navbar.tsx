@@ -453,6 +453,8 @@
 
 
 
+
+
 import { useState } from "react";
 import { ChevronDown, Menu, X, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -581,21 +583,35 @@ export function Navbar() {
 
   return (
     <>
+      {/* ========================================================== */}
+      {/* TOP BAR – NOW WITH ROUTER LINKS                            */}
+      {/* ========================================================== */}
       <div className="bg-slate-100 text-slate-600 text-xs relative z-[60]">
         <div className="container flex items-center justify-end gap-8 py-2.5">
-          {["Global", "Careers", "Contact"].map((item) => (
-            <motion.span
-              key={item}
-              whileHover={{ y: -2, color: "var(--primary)" }}
-              whileTap={{ scale: 0.9, color: "#22d3ee" }}
-              className="opacity-75 cursor-pointer font-medium tracking-wide transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300"
-            >
-              {item}
-            </motion.span>
-          ))}
+          <Link
+            to="/products"
+            className="opacity-75 cursor-pointer font-medium tracking-wide transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300 hover:text-primary hover:opacity-100"
+          >
+            Global
+          </Link>
+          <Link
+            to="/about/careers"
+            className="opacity-75 cursor-pointer font-medium tracking-wide transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300 hover:text-primary hover:opacity-100"
+          >
+            Careers
+          </Link>
+          <Link
+            to="/contact"
+            className="opacity-75 cursor-pointer font-medium tracking-wide transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300 hover:text-primary hover:opacity-100"
+          >
+            Contact
+          </Link>
         </div>
       </div>
 
+      {/* ========================================================== */}
+      {/* MAIN NAVBAR – UNCHANGED (exactly as provided)              */}
+      {/* ========================================================== */}
       <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md">
         <div className="container flex items-center justify-between h-[var(--nav-height)] py-4">
           
@@ -903,9 +919,3 @@ export function Navbar() {
     </>
   );
 }
-
-
-
-
-
-

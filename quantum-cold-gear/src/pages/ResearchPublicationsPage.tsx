@@ -165,7 +165,7 @@ export function ResearchPublications() {
       {/* ========================================== */}
       {/* HERO SECTION */}
       {/* ========================================== */}
-      <section className="relative pt-28 pb-16 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100">
+      <section className="relative pt-5 pb-16 px-6 text-center z-10 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-100">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
