@@ -654,7 +654,8 @@ const ContactPage = () => {
     e.preventDefault();
     setFormState("submitting");
 
-    const API_URL = "http://localhost:5000";
+    // const API_URL = "http://localhost:5000";
+    const API_URL = "";
 
     try {
       const response = await fetch(`${API_URL}/api/forms/contact`, {

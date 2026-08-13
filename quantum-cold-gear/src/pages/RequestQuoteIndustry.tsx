@@ -826,7 +826,8 @@ const RequestQuoteIndustry = () => {
       submitData.append("attachments", file);
     });
 
-    const API_URL = "http://localhost:5000";
+    // const API_URL = "http://localhost:5000";
+    const API_URL = "";
 
     try {
       const response = await fetch(`${API_URL}/api/forms/industry-quote`, {

@@ -593,7 +593,7 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  // const [isSearchHovered, setIsSearchHovered] = useState(false); // ← TEMPORARILY COMMENTED OUT
+  const [isSearchHovered, setIsSearchHovered] = useState(false);
   
   const location = useLocation();
 
@@ -626,27 +626,11 @@ export function Navbar() {
       </div>
 
       {/* ========================================================== */}
-      {/* MAIN NAVBAR – UNCHANGED (exactly as provided)              */}
+      {/* MAIN NAVBAR – UNCHANGED                                    */}
       {/* ========================================================== */}
       <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md">
         <div className="container flex items-center justify-between h-[var(--nav-height)] py-4">
           
-          {/* <Link to="/" className="flex flex-col items-start justify-center cursor-pointer group">
-            <div className="flex gap-1.5 mb-0.5">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                  className="w-2.5 h-2.5 rounded-full bg-primary"
-                />
-              ))}
-            </div>
-            <span className="font-sans text-3xl font-extrabold tracking-widest text-slate-900 leading-none group-hover:text-primary transition-colors duration-300">
-              CRYONANO
-            </span>
-          </Link> */}
-
           <Link to="/" className="flex flex-col items-start justify-center cursor-pointer group relative">
             {/* Import the exact geometric font needed to match the image */}
             <style>
@@ -665,14 +649,7 @@ export function Navbar() {
               ))}
             </div>
             
-            {/* 2. CRYONANO: Clean, geometric sans-serif, matching the exact weight and spacing */}
-            {/* <span 
-              className="text-[30px] font-[700] text-slate-900 leading-none group-hover:text-primary transition-colors duration-300"
-              style={{ fontFamily: "'Jost', 'Century Gothic', sans-serif", letterSpacing: "0.04em" }}
-            >
-              CRYONANO
-            </span> */}
-
+            {/* 2. CRYONANO */}
             <span 
               className="text-[30px] font-[400] text-slate-900 leading-none group-hover:text-primary transition-colors duration-300"
               style={{ fontFamily: "'Jost', 'Century Gothic', sans-serif", letterSpacing: "0.04em" }}
@@ -733,7 +710,7 @@ export function Navbar() {
                     </Link>
                   </motion.div>
 
-                  {/* Desktop Dropdown (pt-4 creates an invisible hover bridge so it doesn't close) */}
+                  {/* Desktop Dropdown */}
                   <AnimatePresence>
                     {link.dropdown && openDropdown === link.dropdown && (
                       <motion.div
@@ -794,11 +771,10 @@ export function Navbar() {
             })}
           </div>
 
-          {/* ========================================================== */}
-          {/* SEARCH – TEMPORARILY HIDDEN (uncomment to restore)          */}
-          {/* ========================================================== */}
-          {/*
           <div className="flex items-center gap-3 relative">
+            
+            {/* Search Engine - Currently commented out as it is not implemented yet */}
+            {/* 
             <div 
               className="flex items-center"
               onMouseEnter={() => setIsSearchHovered(true)}
@@ -829,16 +805,15 @@ export function Navbar() {
                 <Search className="h-5 w-5" />
               </motion.button>
             </div>
-          </div>
-          */}
+            */}
 
-          {/* Mobile menu toggle – always visible */}
-          <button
-            className="lg:hidden p-2 hover:bg-slate-300 rounded transition-colors text-slate-700"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            <button
+              className="lg:hidden p-2 hover:bg-slate-300 rounded transition-colors text-slate-700"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu with expanding Accordions */}
