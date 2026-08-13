@@ -271,7 +271,7 @@ export const productsData: Record<string, any> = {
   gallery: [
     { url: "/images/Quantum Hardware/quantum-volt/image1.png", caption: "QuantumVolt Main Chassis Assembly" },
     { url: "/images/Quantum Hardware/quantum-volt/image2.png", caption: "Isolated Analog PCB Architecture" },
-    { url: "/images/Quantum Hardware/quantum-volt/image3.jpeg", caption: "Multi-Channel Front Panel Connectors" }
+    { url: "/images/Quantum Hardware/quantum-volt/image3.png", caption: "Multi-Channel Front Panel Connectors" }
   ],
 
   cta: {
@@ -1477,10 +1477,10 @@ export const productsData: Record<string, any> = {
   datasheetUrl: "/images/Cryogenics/2d-transfer-system/Nanostage Datasheet.pdf",
 
   // 2. ADDED HERO IMAGE:
-  heroImage: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
+  heroImage: "/images/Cryogenics/2d-transfer-system/image1.png",
 
   gallery: [
-    { url: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png", caption: "2DTS-M2 Main Assembly" },
+    { url: "/images/Cryogenics/2d-transfer-system/image1.png", caption: "2DTS-M2 Main Assembly" },
     { url: "/images/Cryogenics/2d-transfer-system/Manual 2DTS(1).png", caption: "High-Precision Motorized Stage" },
     { url: "/images/Cryogenics/2d-transfer-system/Manual 2DTS(3).png", caption: "Optical Alignment System" }
   ],
@@ -1725,8 +1725,8 @@ export const productsData: Record<string, any> = {
   heroImage: "/images/Cryogenics/psm-100/image3.png",
 
   gallery: [
-    { url: "/images/Cryogenics/psm-100/image1.avif", caption: "Probe Station Assembly" },
-    { url: "/images/Cryogenics/psm-100/image2.avif", caption: "Micro-manipulator and Probe Arm" },
+    { url: "/images/Cryogenics/psm-100/image1.png", caption: "Probe Station Assembly" },
+    { url: "/images/Cryogenics/psm-100/image2.png", caption: "Micro-manipulator and Probe Arm" },
       { url: "/images/Cryogenics/psm-100/image3.png", caption: "Cryogenic Sample Stage" }
   ],
 
@@ -3581,12 +3581,12 @@ export const productsData: Record<string, any> = {
   datasheetUrl: "/images/Electromagnets/bitter-magnet/Bitter Type.pdf",
 
   // 2. ADDED HERO IMAGE:
-  heroImage: "/images/Electromagnets/bitter-magnet/image1.png",
+  heroImage: "/images/Electromagnets/bitter-magnet/image 6.png",
 
   gallery: [
     { url: "/images/Electromagnets/bitter-magnet/image1.png", caption: "Stacked Circular Copper Conducting Plates" },
     { url: "/images/Electromagnets/bitter-magnet/image4.avif", caption: "High-Flow Water Cooling Layout" },
-     { url: "/images/Electromagnets/bitter-magnet/image5.avif", caption: "Bitter Plate Assembly & Magnetic Core" }
+     { url: "/images/Electromagnets/bitter-magnet/image 6.png", caption: "Bitter Plate Assembly & Magnetic Core" }
   ],
 
   cta: {

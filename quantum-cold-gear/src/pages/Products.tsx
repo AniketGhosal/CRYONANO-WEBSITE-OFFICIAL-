@@ -874,7 +874,7 @@ const productCatalog = [
       "Up to 6 micro-positioners",
       "I-V and C-V device characterization",
     ],
-    image: "/images/Cryogenics/psm-100/image1.avif",
+    image: "/images/Cryogenics/psm-100/image3.png",
   },
   {
     id: "dipstick",
@@ -930,7 +930,7 @@ const productCatalog = [
       "Programmable Thermal Chuck",
       "Long-WD Optical Microscope",
     ],
-    image: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
+    image: "/images/Cryogenics/2d-transfer-system/image1.png",
   },
   {
     id: "2d-transfer-motorised",
