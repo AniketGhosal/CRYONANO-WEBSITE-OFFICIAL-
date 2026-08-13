@@ -1474,7 +1474,7 @@ export const productsData: Record<string, any> = {
   ],
 
   // 1. FIXED DATASHEET URL:
-  datasheetUrl: "/images/Cryogenics/2d-transfer-system/Nanostage Datasheet.pdf",
+  datasheetUrl: "/images/Cryogenics/2d-transfer-system/2D_MANUAL.pdf",
 
   // 2. ADDED HERO IMAGE:
   heroImage: "/images/Cryogenics/2d-transfer-system/image1.png",
