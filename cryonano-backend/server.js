@@ -67,8 +67,16 @@ app.use('/api/forms', formRoutes);
 // Serve the static React files from the 'dist' folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// // Catch-all route: If the user visits any URL that isn't an API, show the React website
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
+
+
+
+
 // Catch-all route: If the user visits any URL that isn't an API, show the React website
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 // ---------------------------------

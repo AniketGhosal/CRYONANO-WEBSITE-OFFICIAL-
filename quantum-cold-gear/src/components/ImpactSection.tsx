@@ -494,7 +494,7 @@ const publications = [
     title: "Magnetic-Field-Dependent Equilibration of Fractional Quantum Hall Edge Modes",
     authors: "Tanmay Maiti, et. al.",
     journal: "Phys. Rev. Lett. 125, 076802",
-    url: "#"
+    url: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.076802"
   },
   {
     year: "2019",
