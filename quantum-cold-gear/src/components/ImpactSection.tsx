@@ -407,7 +407,7 @@ import { Link } from "react-router-dom";
 
 // --- DATA ARRAYS ---
 const stats = [
-  { value: 32, suffix: "+", label: "Systems Delivered" },
+  { value: 65, suffix: "+", label: "Systems Delivered" },
   { value: 15, suffix: "+", label: "IIT Partners" },
   { value: 5, suffix: "+", label: "Countries Reached" },
   { value: 15, suffix: "+", label: "Publications" },
