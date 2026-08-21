@@ -297,7 +297,8 @@ export const AuthModal = ({ isOpen, onClose, onSuccess }: { isOpen: boolean; onC
                 type="submit" 
                 className="w-full py-4 mt-4 bg-red-600 text-white font-black rounded-xl shadow-[0_4px_20px_rgba(220,38,38,0.3)] hover:bg-red-700 hover:shadow-[0_8px_30px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isRegister ? 'Register & Download' : 'Sign In & Download')}
+                {/* {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isRegister ? 'Register & Download' : 'Sign In & Download')} */}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isRegister ? 'Create Account' : 'Sign In')}
               </button>
             </form>
 

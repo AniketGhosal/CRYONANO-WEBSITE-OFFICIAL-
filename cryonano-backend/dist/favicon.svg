@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Left Dot (Touching the left edge) -->
+  <circle cx="85" cy="256" r="85" fill="#dc2626" />
+  
+  <!-- Center Dot -->
+  <circle cx="256" cy="256" r="85" fill="#dc2626" />
+  
+  <!-- Right Dot (Touching the right edge) -->
+  <circle cx="427" cy="256" r="85" fill="#dc2626" />
+</svg>

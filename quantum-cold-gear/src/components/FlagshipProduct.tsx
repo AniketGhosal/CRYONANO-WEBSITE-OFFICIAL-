@@ -305,7 +305,7 @@ const capabilities = [
 const imagePlaceholders = [
   { 
     id: 1, 
-    src: "/images/Cryogenics/2d-transfer-system/Automated 2DTS.png",
+    src: "/images/Cryogenics/2d-transfer-system/image1.png",
     caption: "2DTS-M2 Main Assembly" 
   },
   { 

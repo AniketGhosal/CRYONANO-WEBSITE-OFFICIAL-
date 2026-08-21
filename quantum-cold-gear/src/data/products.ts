@@ -1068,7 +1068,7 @@ export const productsData: Record<string, any> = {
   heroImage: "/images/Quantum Hardware/DAC-system/image1.png",
 
   gallery: [
-    { url: "/images/Quantum Hardware/DAC-system/image1.jpeg", caption: "DACsys Acquisition Interface" },
+    { url: "/images/Quantum Hardware/DAC-system/image1.png", caption: "DACsys Acquisition Interface" },
     { url: "/images/Quantum Hardware/DAC-system/image2.jpeg", caption: "Multi-Channel Logic Module" },
     { url: "/images/Quantum Hardware/DAC-system/image3.jpeg", caption: "Cryogenic Measurement Setup" }
   ],
@@ -5373,8 +5373,8 @@ export const productsData: Record<string, any> = {
     heroImage: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER1.avif",
     gallery: [
       { url: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER1.avif", caption: "High-Density 400Hz Inverter" },
-      { url: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER2.avif", caption: "Modular Rack Configuration" },
-      { url: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER3.avif", caption: "Precision Control Interface" }
+      { url: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER1.avif", caption: "Modular Rack Configuration" },
+      { url: "/images/Power Converters & Inverters/inverter-400hz-rugged/INVERTER1.avif", caption: "Precision Control Interface" }
     ],
 
     cta: {

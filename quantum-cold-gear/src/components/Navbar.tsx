@@ -153,27 +153,11 @@
 //       </div>
 
 //       {/* ========================================================== */}
-//       {/* MAIN NAVBAR – UNCHANGED (exactly as provided)              */}
+//       {/* MAIN NAVBAR – UNCHANGED                                    */}
 //       {/* ========================================================== */}
 //       <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md">
 //         <div className="container flex items-center justify-between h-[var(--nav-height)] py-4">
           
-//           {/* <Link to="/" className="flex flex-col items-start justify-center cursor-pointer group">
-//             <div className="flex gap-1.5 mb-0.5">
-//               {[0, 1, 2].map((i) => (
-//                 <motion.div
-//                   key={i}
-//                   animate={{ opacity: [0.3, 1, 0.3] }}
-//                   transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-//                   className="w-2.5 h-2.5 rounded-full bg-primary"
-//                 />
-//               ))}
-//             </div>
-//             <span className="font-sans text-3xl font-extrabold tracking-widest text-slate-900 leading-none group-hover:text-primary transition-colors duration-300">
-//               CRYONANO
-//             </span>
-//           </Link> */}
-
 //           <Link to="/" className="flex flex-col items-start justify-center cursor-pointer group relative">
 //             {/* Import the exact geometric font needed to match the image */}
 //             <style>
@@ -192,14 +176,7 @@
 //               ))}
 //             </div>
             
-//             {/* 2. CRYONANO: Clean, geometric sans-serif, matching the exact weight and spacing */}
-//             {/* <span 
-//               className="text-[30px] font-[700] text-slate-900 leading-none group-hover:text-primary transition-colors duration-300"
-//               style={{ fontFamily: "'Jost', 'Century Gothic', sans-serif", letterSpacing: "0.04em" }}
-//             >
-//               CRYONANO
-//             </span> */}
-
+//             {/* 2. CRYONANO */}
 //             <span 
 //               className="text-[30px] font-[400] text-slate-900 leading-none group-hover:text-primary transition-colors duration-300"
 //               style={{ fontFamily: "'Jost', 'Century Gothic', sans-serif", letterSpacing: "0.04em" }}
@@ -260,7 +237,7 @@
 //                     </Link>
 //                   </motion.div>
 
-//                   {/* Desktop Dropdown (pt-4 creates an invisible hover bridge so it doesn't close) */}
+//                   {/* Desktop Dropdown */}
 //                   <AnimatePresence>
 //                     {link.dropdown && openDropdown === link.dropdown && (
 //                       <motion.div
@@ -322,6 +299,9 @@
 //           </div>
 
 //           <div className="flex items-center gap-3 relative">
+            
+//             {/* Search Engine - Currently commented out as it is not implemented yet */}
+//             {/* 
 //             <div 
 //               className="flex items-center"
 //               onMouseEnter={() => setIsSearchHovered(true)}
@@ -352,6 +332,7 @@
 //                 <Search className="h-5 w-5" />
 //               </motion.button>
 //             </div>
+//             */}
 
 //             <button
 //               className="lg:hidden p-2 hover:bg-slate-300 rounded transition-colors text-slate-700"
@@ -470,11 +451,15 @@
 
 
 
-
 import { useState } from "react";
-import { ChevronDown, Menu, X, Search } from "lucide-react";
+// Added User and LogOut icons
+import { ChevronDown, Menu, X, Search, User, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+
+// NEW IMPORTS FOR GLOBAL AUTHENTICATION
+import { useAuth } from '@/context/AuthContext';
+import { AuthModal } from '@/components/AuthModal'; // Adjust path if your AuthModal is located elsewhere
 
 // FULLY RESTORED MEGA MENU DATA
 const productCategories = [
@@ -491,7 +476,6 @@ const productCategories = [
     title: "Cryogenics",
     items: [
       { name: "Cryogenic Nano Stage", path: "/products/nano-stage" },
-      // { name: "2D Transfer System", path: "/products/2d-transfer-system" },
       { name: "Cryogenic Probe Station", path: "/products/psm-100" },
       { name: "Variable Temperature Insert", path: "/products/dipstick" }
     ],
@@ -542,7 +526,6 @@ const powerCategories = [
     title: "Battery Chargers",
     items: [
       { name: "Intelligent Battery Chargers", path: "/products/battery-chargers" },
-      // { name: "Talk to our Engineers / R&D Team", path: "/contact" },
     ],
   },
     {
@@ -595,6 +578,10 @@ export function Navbar() {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   
+  // GLOBAL AUTHENTICATION STATE
+  const { user, logout } = useAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
   const location = useLocation();
 
   return (
@@ -626,18 +613,17 @@ export function Navbar() {
       </div>
 
       {/* ========================================================== */}
-      {/* MAIN NAVBAR – UNCHANGED                                    */}
+      {/* MAIN NAVBAR                                                */}
       {/* ========================================================== */}
       <nav className="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md border-b border-slate-300 shadow-md">
         <div className="container flex items-center justify-between h-[var(--nav-height)] py-4">
           
           <Link to="/" className="flex flex-col items-start justify-center cursor-pointer group relative">
-            {/* Import the exact geometric font needed to match the image */}
             <style>
               {`@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600;700;800&display=swap');`}
             </style>
             
-            {/* 1. Three Dots: Maroon color, sized and spaced to perfectly span over C, R, and Y */}
+            {/* 1. Three Dots */}
             <div className="flex gap-[7px] mb-1.5 ml-1">
               {[0, 1, 2].map((i) => (
                 <motion.div
@@ -657,7 +643,7 @@ export function Navbar() {
               CRYONANO
             </span>
             
-            {/* 3. TAGLINE: THINK SCIENCE - aligned flush, sized correctly */}
+            {/* 3. TAGLINE */}
             <span 
               className="text-primary text-[11.5px] font-[800] mt-1.0 leading-none ml-[2px]"
               style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.28em" }}
@@ -669,7 +655,6 @@ export function Navbar() {
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-4 h-full">
             {navLinks.map((link) => {
-              
               let isActive = false;
               if (location.pathname === link.href) {
                 isActive = true;
@@ -773,40 +758,28 @@ export function Navbar() {
 
           <div className="flex items-center gap-3 relative">
             
-            {/* Search Engine - Currently commented out as it is not implemented yet */}
-            {/* 
-            <div 
-              className="flex items-center"
-              onMouseEnter={() => setIsSearchHovered(true)}
-              onMouseLeave={() => setIsSearchHovered(false)}
-            >
-              <AnimatePresence>
-                {isSearchHovered && (
-                  <motion.div
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: 180, opacity: 1 }}
-                    exit={{ width: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="overflow-hidden mr-2"
-                  >
-                    <input 
-                      type="text" 
-                      placeholder="Search systems..." 
-                      className="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-full px-4 py-2 outline-none focus:border-primary transition-colors placeholder:text-slate-400 shadow-inner"
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <motion.button 
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className={`p-2.5 rounded-full transition-colors ${isSearchHovered ? 'bg-primary text-white' : 'hover:bg-slate-300 text-slate-700 hover:text-slate-900'}`}
-              >
-                <Search className="h-5 w-5" />
-              </motion.button>
+            {/* LOGIN / REGISTER BUTTON - DESKTOP */}
+            <div className="hidden lg:block ml-2">
+              {user ? (
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-slate-700 bg-white border-2 border-slate-200 rounded-full hover:border-red-500 hover:text-red-600 transition-all shadow-sm hover:shadow-md"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-primary rounded-full hover:bg-red-700 transition-all shadow-md hover:shadow-[0_4px_15px_rgba(220,38,38,0.4)] hover:-translate-y-0.5"
+                >
+                  <User className="w-4 h-4" />
+                  Login / Register
+                </button>
+              )}
             </div>
-            */}
 
+            {/* Mobile Menu Toggle Button */}
             <button
               className="lg:hidden p-2 hover:bg-slate-300 rounded transition-colors text-slate-700"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -908,11 +881,46 @@ export function Navbar() {
                     </div>
                   );
                 })}
+                
+                {/* LOGIN / REGISTER BUTTON - MOBILE */}
+                <div className="border-t border-slate-300 pt-4 mt-2 px-2 pb-2">
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMobileOpen(false);
+                      }}
+                      className="flex items-center justify-center gap-2 w-full py-3.5 text-sm font-bold text-red-600 bg-red-50 border border-red-100 rounded-xl hover:bg-red-100 transition-colors"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      Logout
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setIsAuthModalOpen(true);
+                      }}
+                      className="flex items-center justify-center gap-2 w-full py-3.5 text-sm font-bold text-white bg-primary rounded-xl shadow-md hover:bg-red-700 transition-colors"
+                    >
+                      <User className="w-5 h-5" />
+                      Login / Register
+                    </button>
+                  )}
+                </div>
+
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
+
+      {/* GLOBAL AUTHENTICATION MODAL */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+        onSuccess={() => setIsAuthModalOpen(false)} 
+      />
     </>
   );
 }
